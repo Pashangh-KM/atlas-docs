@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "description": "**APIs for verification service**",
+    "description": "**APIs for chat based onboarding**",
     "title": "Verification Service",
     "version": "1.0.0"
   },
