@@ -1,0 +1,300 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Atlas Address Service",
+    "description": "APIs for Address Matching Service. Authentication is performed using static client credentials passed in headers.",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "v1",
+      "description": "Version 1 APIs"
+    }
+  ],
+  "paths": {
+    "/v1/address/match/batch": {
+      "post": {
+        "tags": ["v1"],
+        "summary": "Match source address against multiple target addresses",
+        "description": "Compares one source address against one or more target addresses and returns similarity scores.",
+        "operationId": "matchAddressesBatch",
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Client identifier issued by Atlas"
+          },
+          {
+            "name": "client_secret",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Client secret issued by Atlas"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddressMatchRequest"
+              },
+              "example": {
+                "application_id": "lentra_app_001",
+                "source_address": "Flat 12, Green View Apartments, MG Road, Bangalore",
+                "target_addresses": [
+                  {
+                    "address": "12 Greenview Apt, Mahatma Gandhi Rd, Bengaluru",
+                    "index": 0
+                  },
+                  {
+                    "address": "45 Lake View, Whitefield, Bangalore",
+                    "index": 1
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Request processed successfully (full or partial success)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddressMatchSuccessResponse"
+                },
+                "examples": {
+                  "fullSuccessOrPartial422": {
+                    "summary": "Full or partial success with valid and unprocessable targets",
+                    "value": {
+                      "match_data": [
+                        {
+                          "source_address": "Flat 12, Green View Apartments, MG Road, Bangalore",
+                          "target_address": "12 Greenview Apt, Mahatma Gandhi Rd, Bengaluru",
+                          "similarity_score": 89.92,
+                          "same_person_score": 9,
+                          "index": 0,
+                          "error_code": null,
+                          "error_message": null
+                        },
+                        {
+                          "source_address": "Flat 12, Green View Apartments, MG Road, Bangalore",
+                          "target_address": "45 Lake View, Whitefield, Bangalore",
+                          "similarity_score": null,
+                          "same_person_score": null,
+                          "index": 1,
+                          "error_code": "422",
+                          "error_message": "Unprocessable Entity: Address normalization failed for this target"
+                        }
+                      ]
+                    }
+                  },
+                  "missingIndexTargetError": {
+                    "summary": "Target missing index field resulting in target-level error",
+                    "value": {
+                      "match_data": [
+                        {
+                          "error_code": "400",
+                          "error_message": "Bad Request: target_addresses is missing address or index",
+                          "index": null,
+                          "same_person_score": null,
+                          "similarity_score": null,
+                          "source_address": "MG Road, Bangalore",
+                          "target_address": "12 Greenview Apt, Bangalore"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request – Invalid or missing parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "error_code": "400",
+                  "error_message": "Bad Request: source_address or target_addresses is missing or invalid"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication Error – Invalid client credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "error_code": "401",
+                  "error_message": "Authentication Error: Invalid client_id or client_secret"
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "Resource Gone – API deprecated or no longer supported",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "error_code": "410",
+                  "error_message": "Resource Gone: This API version is no longer supported"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity – Request is well-formed but address data is invalid or cannot be normalized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "error_code": "422",
+                  "error_message": "Unprocessable Entity: source_address or one/more target_addresses could not be normalized"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable – Downstream dependency is unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "error_code": "503",
+                  "error_message": "Service Unavailable: Address matching engine is currently unavailable"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AddressMatchRequest": {
+        "type": "object",
+        "required": ["application_id", "source_address", "target_addresses"],
+        "properties": {
+          "application_id": {
+            "type": "string",
+            "description": "Unique application identifier provided by Lentra"
+          },
+          "source_address": {
+            "type": "string",
+            "description": "Primary address to be matched"
+          },
+          "target_addresses": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/components/schemas/TargetAddress"
+            }
+          }
+        }
+      },
+      "TargetAddress": {
+        "type": "object",
+        "required": ["address", "index"],
+        "properties": {
+          "address": {
+            "type": "string",
+            "description": "Target address to compare against source"
+          },
+          "index": {
+            "type": "integer",
+            "description": "Client-provided index for deterministic mapping"
+          }
+        }
+      },
+      "AddressMatchSuccessResponse": {
+        "type": "object",
+        "required": ["match_data"],
+        "properties": {
+          "match_data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MatchResult"
+            }
+          }
+        }
+      },
+      "MatchResult": {
+        "type": "object",
+        "required": ["index"],
+        "properties": {
+          "source_address": {
+            "type": "string",
+            "nullable": true
+          },
+          "target_address": {
+            "type": "string",
+            "nullable": true
+          },
+          "similarity_score": {
+            "type": "number",
+            "format": "float",
+            "nullable": true,
+            "description": "Similarity score (0–100)"
+          },
+          "same_person_score": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Likelihood score indicating same person"
+          },
+          "index": {
+            "type": "integer"
+          },
+          "error_code": {
+            "type": "string",
+            "nullable": true,
+            "example": "422",
+            "description": "Target-level error code as HTTP status string"
+          },
+          "error_message": {
+            "type": "string",
+            "nullable": true,
+            "example": "External System Error: Address normalization failed for this target",
+            "description": "Target-level error message"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "required": ["error_code", "error_message"],
+        "properties": {
+          "error_code": {
+            "type": "string",
+            "example": "401",
+            "description": "HTTP status code represented as a string"
+          },
+          "error_message": {
+            "type": "string",
+            "example": "Authentication Error: Invalid client_id or client_secret",
+            "description": "Detailed human-readable error message"
+          }
+        }
+      }
+    }
+  }
+}
