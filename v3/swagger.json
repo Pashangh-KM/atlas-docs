@@ -1,0 +1,1536 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "**APIs for LOS Service**",
+    "title": "LOS Service",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "v3",
+      "description": "v3 endpoints"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "DeliveryOrder": {
+  "type": "object",
+  "properties": {
+    "document_type": {
+      "type": "string",
+            "example": "DELIVERY_ORDER"
+    },
+          "dealer_name": {
+      "type": "object",
+      "properties": {
+              "value": {
+                "type": "string",
+                "example": "XYZ Motors"
+              },
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+                "example": 0.93
+              }
+            }
+        },
+          "dealer_address": {
+            "type": "object",
+            "properties": {
+        "value": {
+          "type": "string",
+                "example": "Plot 21, Industrial Area, Mumbai"
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.9
+              }
+            }
+          },
+          "customer_name": {
+      "type": "object",
+      "properties": {
+              "value": {
+        "type": "string",
+                "example": "John Doe"
+              },
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+                "example": 0.92
+              }
+            }
+        },
+          "customer_delivery_address": {
+        "type": "object",
+            "properties": {
+        "value": {
+          "type": "string",
+                "example": "221B Baker Street, London"
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.9
+              }
+            }
+          },
+          "customer_mobile_number": {
+      "type": "object",
+      "properties": {
+              "value": {
+            "type": "string",
+                "example": "+91-9876543210"
+              },
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+                "example": 0.88
+              }
+            }
+        },
+          "product_brand_manufacturer": {
+            "type": "object",
+            "properties": {
+        "value": {
+          "type": "string",
+                "example": "ACME Motors"
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.9
+              }
+            }
+          },
+          "product_model": {
+      "type": "object",
+      "properties": {
+              "value": {
+            "type": "string",
+                "example": "Model X"
+              },
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+                "example": 0.88
+              }
+            }
+        },
+          "product_category": {
+            "type": "object",
+            "properties": {
+        "value": {
+          "type": "string",
+                "example": "Two Wheeler"
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.87
+              }
+            }
+          },
+          "product_serial_imei_number": {
+      "type": "object",
+      "properties": {
+              "value": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "example": ["SN1234567", "359881234567890"]
+              },
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+                "example": 0.85
+              }
+            }
+        },
+          "oem_validation_date": {
+            "type": "object",
+            "properties": {
+        "value": {
+          "type": "string",
+                "format": "date",
+                "example": "2024-10-01"
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.9
+              }
+            }
+          },
+          "scheme_description": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "example": "Festive offer with 10% discount"
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.86
+              }
+            }
+          },
+          "product_total_cost": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "number",
+                "format": "float",
+                "example": 150000
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.95
+              }
+            }
+          },
+          "emi_amount": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "number",
+                "format": "float",
+                "example": 4200
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.93
+              }
+            }
+          }
+        }
+      },
+      "Invoice": {
+        "type": "object",
+        "properties": {
+          "document_type": {
+            "type": "string",
+            "example": "INVOICE"
+          },
+          "customer_name": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "example": "John Doe"
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.95
+              }
+            }
+              },
+          "customer_address": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "example": "221B Baker Street, London"
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.9
+              }
+            }
+          },
+          "customer_email": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "format": "email",
+                "example": "john.doe@example.com"
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.92
+              }
+            }
+              },
+          "customer_phone_number": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "example": "+91-9876543210"
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.9
+              }
+            }
+          },
+          "dealership_name": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "example": "XYZ Motors"
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.93
+              }
+            }
+              },
+          "dealer_address": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "example": "Plot 21, Industrial Area, Mumbai"
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.9
+              }
+            }
+          },
+          "dealer_gst": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "example": "27ABCDE1234F1Z5"
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.95
+              }
+            }
+              },
+          "dealer_gst_handwritten": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "enum": ["yes", "no"],
+                "example": "yes"
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.85
+              }
+            }
+          },
+          "product_type": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "example": ["Two Wheeler"]
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.9
+              }
+            }
+          },
+          "model_name": {
+        "type": "object",
+        "properties": {
+              "value": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "example": ["Model X"]
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.88
+              }
+            }
+          },
+          "manufacturer_name": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "example": ["ACME Motors"]
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.88
+              }
+            }
+          },
+          "product_hsn_code": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "example": ["87032291"]
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.87
+              }
+            }
+          },
+          "serial_number": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "example": ["SN1234567"]
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.85
+              }
+            }
+          },
+          "imei_number": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "example": ["359881234567890"]
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.85
+              }
+            }
+          },
+          "total_invoice_amount": {
+            "type": "object",
+            "properties": {
+              "value": {
+            "type": "string",
+                "example": "₹250000"
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.96
+              }
+            }
+          },
+          "invoice_date": {
+            "type": "object",
+            "properties": {
+              "value": {
+            "type": "string",
+                "format": "date",
+                "example": "2024-09-15"
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.95
+              }
+            }
+          },
+          "invoice_number": {
+        "type": "object",
+        "properties": {
+              "value": {
+            "type": "string",
+                "example": "INV-2024-0001"
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.94
+              }
+            }
+          },
+          "downpayment_amount": {
+            "type": "object",
+            "properties": {
+              "value": {
+            "type": "string",
+                "example": "₹50000"
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.9
+              }
+            }
+          },
+          "hypothecation_amount": {
+            "type": "object",
+            "properties": {
+              "value": {
+            "type": "string",
+                "example": "₹200000"
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.9
+              }
+            }
+          },
+          "hypothecation": {
+            "type": "object",
+            "properties": {
+              "value": {
+            "type": "string",
+                "enum": ["yes", "no"],
+                "example": "yes"
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.85
+              }
+            }
+          },
+          "dealer_sign": {
+            "type": "object",
+            "properties": {
+              "value": {
+            "type": "string",
+                "enum": ["yes", "no"],
+                "example": "yes"
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.8
+              }
+            }
+          },
+          "dealer_stamp": {
+    "type": "object",
+    "properties": {
+              "value": {
+        "type": "string",
+                "enum": ["yes", "no"],
+                "example": "no"
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.8
+              }
+            }
+          }
+        }
+      },
+      "ImeiCloseupImage": {
+        "type": "object",
+        "properties": {
+          "document_type": {
+            "type": "string",
+            "example": "IMEI_CLOSEUP_IMAGE"
+          },
+          "model": {
+        "type": "object",
+        "properties": {
+              "value": {
+            "type": "string",
+                "example": "iPhone 15 Pro"
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.92
+              }
+            }
+          },
+          "ram": {
+    "type": "object",
+    "properties": {
+              "value": {
+            "type": "string",
+                "example": "8 GB"
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.9
+              }
+            }
+          },
+          "rom": {
+        "type": "object",
+            "properties": {
+              "value": {
+            "type": "string",
+                "example": "256 GB"
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.9
+              }
+            }
+          },
+          "imei_number": {
+            "type": "object",
+        "properties": {
+              "value": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "example": ["359881234567890"]
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.85
+              }
+            }
+          },
+          "product_sku": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "example": ["SKU-IPH15PRO-256"]
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.84
+              }
+            }
+          },
+          "price": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "number",
+                "format": "float",
+                "example": 129999
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.95
+              }
+            }
+          },
+          "serial_number": {
+    "type": "object",
+    "properties": {
+              "value": {
+        "type": "string",
+                "example": "SN-OPEN-123456"
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.9
+              }
+            }
+          }
+        }
+      },
+      "AssetOpenBoxImage": {
+        "type": "object",
+        "properties": {
+          "document_type": {
+            "type": "string",
+            "example": "ASSET_OPEN_BOX_IMAGE"
+          },
+          "customer_present": {
+            "type": "object",
+            "properties": {
+              "value": {
+            "type": "string",
+                "enum": ["yes", "no"],
+                "example": "no"
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.9
+              }
+            }
+          },
+          "number_of_faces_visible": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "integer",
+                "example": 0
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.85
+              }
+            }
+          }
+        }
+      },
+      "AadharExtractImage": {
+        "type": "object",
+        "properties": {
+          "document_type": {
+            "type": "string",
+            "example": "AADHAR_EXTRACT_IMAGE"
+          },
+          "photo_present": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "enum": ["yes", "no"],
+                "example": "yes"
+              },
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.9
+              }
+            }
+          }
+        }
+      },
+      "HTTPStatusCodes": {
+        "type": "object",
+        "properties": {
+          "200": {
+            "type": "string",
+            "description": "OK "
+          },
+          "201": {
+            "type": "string",
+            "description": "Created"
+          },
+          "401": {
+            "type": "string",
+            "description": "Authentication Error"
+          },
+          "400": {
+            "type": "string",
+            "description": "Bad Request."
+          },
+          "422": {
+            "type": "string",
+            "description": "External system error"
+          },
+          "409": {
+            "type": "string",
+            "description": "Resource conflict"
+          },
+          "410": {
+            "type": "string",
+            "description": "Resource gone"
+          }
+        }
+      }, 
+      "CallbackData": {
+        "type": "object",
+        "properties": {
+          "flow_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "description": "UUID of the uploaded file",
+            "example": "c6a2ffd7-eb44-4d16-8b45-32adc2182a8b"
+          },
+          "ocr_data": {
+            "type": "array",
+            "description": "List of OCR extraction results for each uploaded document.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "description": "Document specific payload; structure depends on `document_type` (e.g. `Invoice`, `AssetOpenBoxImage`, `ApplicantPhoto`, `SelfieWithCustomer`)."
+                },
+                "document_id": {
+                  "type": "string",
+                  "description": "Document identifier supplied during upload",
+                  "example": "2332d12323isbjnfijbg"
+                },
+                "error_code": {
+                  "type": "string",
+                  "description": "Machine readable error code when extraction fails",
+                  "example": "INVALID_DOC"
+                },
+                "error_reason": {
+                  "type": "string",
+                  "description": "Human readable explanation corresponding to `error_code`",
+                  "example": "multiple people"
+                }
+              }
+            }
+          },
+          "cross_checks": {
+            "type": "array",
+            "description": "Pairwise validation between two documents/fields.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "source_doc": {
+                  "type": "string",
+                  "example": "DELIVERY_ORDER"
+                },
+                "source_field_name": {
+                  "type": "string",
+                  "example": "dealer_address"
+                },
+                "source_value": {
+                  "type": "string",
+                  "example": "D. No. 14-4-16, Anam Vari Street, Kapu Street, Abbai Reddy Complex, NELLORE. 524001"
+                },
+                "target_doc": {
+                  "type": "string",
+                  "example": "INVOICE"
+                },
+                "target_field_name": {
+                  "type": "string",
+                  "example": "dealer_address"
+                },
+                "target_value": {
+                  "type": "string",
+                  "example": "D. No. 14-4-16, Anam Vari Street, Kapu Street, 524001"
+                },
+                "similarity_score": {
+                  "type": "number",
+                  "format": "int",
+                  "example": 90
+                },
+                "name": {
+                  "type": "string",
+                  "example": "DEALER_ADDRESS"
+                }
+              }
+            }
+          }
+        },
+        "example": {
+          "ocr_data": [
+            {
+              "data": {
+                "document_type": "INVOICE",
+                "customer_name": { "value": "Pashangh", "confidence_score": 0.9 },
+                "customer_address": { "value": "C1002 Falcon Tower Mumbai", "confidence_score": 0.0 },
+                "customer_email": { "value": "pashangh@helloatals.in", "confidence_score": 0.0 },
+                "customer_phone_number": { "value": "8466251423", "confidence_score": 0.0 },
+                "dealership_name": { "value": "Mobile Point", "confidence_score": 0.0 },
+                "dealer_address": { "value": "Shop number 3 SV road Mumbai", "confidence_score": 0.0 },
+                "dealer_gst": { "value": "29SFWYT8463N1Z", "confidence_score": 0.0 },
+                "dealer_gst_handwritten": { "value": "no", "confidence_score": 0.0 },
+                "product_type": { "value": ["TV"], "confidence_score": 0.0 },
+                "model_name": { "value": ["Samsung 55 inch v3"], "confidence_score": 0.0 },
+                "manufacturer_name": { "value": ["Samsung"], "confidence_score": 0.0 },
+                "product_hsn_code": { "value": ["8421300"], "confidence_score": 0.0 },
+                "serial_number": { "value": ["43576767676"], "confidence_score": 0.0 },
+                "imei_number": { "value": ["8382653522332"], "confidence_score": 0.0 },
+                "total_invoice_amount": { "value": "", "confidence_score": 0.0 },
+                "invoice_date": { "value": "23-10-2025", "confidence_score": 0.0 },
+                "invoice_number": { "value": "4332", "confidence_score": 0.0 },
+                "downpayment_amount": { "value": "1500", "confidence_score": 0.0 },
+                "hypothecation_amount": { "value": "7500", "confidence_score": 0.0 },
+                "hypothecation": { "value": "yes", "confidence_score": 0.0 },
+                "dealer_sign": { "value": "yes", "confidence_score": 0.0 },
+                "dealer_stamp": { "value": "yes", "confidence_score": 0.0 }
+              },
+              "document_id": "2332d12323isbjnfijbg",
+              "error_code": "",
+              "error_reason": ""
+            },
+            {
+              "data": {
+                "document_type": "IMEI_CLOSEUP_IMAGE",
+                "model": { "value": "V2123", "confidence_score": 0.0 },
+                "ram": { "value": "8GB", "confidence_score": 0.0 },
+                "rom": { "value": "128GB", "confidence_score": 0.0 },
+                "imei_number": { "value": ["36732632"], "confidence_score": 0.0 },
+                "product_sku": { "value": ["SKU43"], "confidence_score": 0.0 },
+                "price": { "value": 30000, "confidence_score": 0.0 },
+                "serial_number": { "value": "43dsfhdsf", "confidence_score": 0.0 }
+              },
+              "document_id": "2332d12323isbjnfijbg",
+              "error_code": "",
+              "error_reason": ""
+            },
+            {
+              "data": {
+                "document_type": "AADHAR_EXTRACT_IMAGE",
+                "photo_present": { "value": "yes", "confidence_score": 0.0 }
+              },
+              "document_id": "",
+              "error_code": "",
+              "error_reason": ""
+            },
+            {
+              "data": {},
+              "document_id": "",
+              "error_code": "UNRECOGNISED",
+              "error_reason": "document not in list"
+            },
+            {
+              "data": {
+                "document_type": "ASSET_OPEN_BOX_IMAGE",
+                "customer_present": { "value": "yes", "confidence_score": 0.0 },
+                "number_of_faces_visible": { "value": 3, "confidence_score": 0.0 }
+              },
+              "document_id": "",
+              "error_code": "INVALID_DOC",
+              "error_reason": "multiple people"
+            }
+          ],
+          "cross_checks": [
+            {
+              "source_doc": "DELIVERY_ORDER",
+              "source_field_name": "dealer_address",
+              "source_value": "D. No. 14-4-16, Anam Vari Street, Kapu Street, Abbai Reddy Complex, NELLORE. 524001",
+              "target_doc": "INVOICE",
+              "target_field_name": "dealer_address",
+              "target_value": "D. No. 14-4-16, Anam Vari Street, Kapu Street, 524001",
+              "similarity_score": 60,
+              "name": "DEALER_ADDRESS"
+            },
+            {
+              "source_doc": "DELIVERY_ORDER",
+              "source_field_name": "customer_name",
+              "source_value": "Pashangh",
+              "target_doc": "INVOICE",
+              "target_field_name": "customer_name",
+              "target_value": "Pashangh Irani",
+              "similarity_score": 90,
+              "name": "CUSTOMER_NAME"
+            },
+            {
+              "source_doc": "DELIVERY_ORDER",
+              "source_field_name": "customer_delivery_address",
+              "source_value": "D. No. 14-4-16, Anam Vari Street, Kapu Street, 524001",
+              "target_doc": "INVOICE",
+              "target_field_name": "customer_address",
+              "target_value": "D. No. 14-4-16, Anam Vari Street, Kapu Street, 524001",
+              "similarity_score": 90,
+              "name": "CUSTOMER_DELIVERY_ADDRESS"
+            },
+            {
+              "source_doc": "DELIVERY_ORDER",
+              "source_field_name": "customer_mobile_number",
+              "source_value": "8655126210",
+              "target_doc": "INVOICE",
+              "target_field_name": "mobile_number",
+              "target_value": "8655126210",
+              "similarity_score": 90,
+              "name": "CUSTOMER_MOBILE_NUMBER"
+            },
+            {
+              "source_doc": "OPEN_BOX_IMAGE",
+              "source_field_name": "face_match",
+              "source_value": "doc_id",
+              "target_doc": "DIGITALE_LOCKER_IMAGE",
+              "target_field_name": "face_match",
+              "target_value": "doc_id",
+              "similarity_score": 60,
+              "name": "PHOTO_MATCH"
+            }
+          ]
+        }
+      }
+
+    }
+  },
+  "paths": {
+    "/v3/verification/authtoken": {
+      "post": {
+        "tags": ["v3"],
+        "summary": "Generate JWT Token",
+        "description": "Accepts Client-ID and Client-Secret in headers to generate a JWT access token.",
+        "operationId": "generateToken",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Client-Id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Client ID provided to the application"
+          },
+          {
+            "in": "header",
+            "name": "Client-Secret",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Client Secret associated with the client ID"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "JWT token generated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "access_token": {
+                      "type": "string",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                    },
+                    "expires_in": {
+                      "type": "integer",
+                      "example": 3600
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing Client-Id or Client-Secret",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Missing Client-Id or Client-Secret"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Client-Id or Client-Secret",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid Client-Id or Client-Secret"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/verification/multiupload": {
+      "post": {
+        "tags": ["v3"],
+        "description": "API to upload multiple file URLs for verification processing.",
+        "operationId": "Multiupload",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Token",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "JWT token used for authentication"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "flow_uuid": {
+                    "type": "string",
+                    "format": "uuid",
+                    "description": "Flow UUID associated with the verification request"
+                  },
+                  "file_urls": {
+                    "type": "array",
+                    "description": "List of file objects containing S3 URLs and metadata",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "file_url": {
+                          "type": "string",
+                          "format": "uri",
+                          "description": "S3 URL of the file"
+                        },
+                        "document_id": {
+                          "type": "string",
+                          "description": "External document ID for tracking"
+                        }
+                      },
+                      "required": ["file_url", "document_id"]
+                    }
+                  }
+                },
+                "required": ["flow_uuid", "file_urls"],
+                "example": {
+                  "flow_uuid": "LOS-17cab13b-f437-49bc-9c08-55319b88b0eb",
+                  "file_urls": [
+                    {
+                      "file_url": "https://files.s3.ap-south-1.amazonaws.com/uploads/files/sample1.jpg?response-content-disposition=inlin",
+                      "document_id": "1"
+                    },
+                    {
+                      "file_url": "https://files.s3.ap-south-1.amazonaws.com/uploads/files/sample1.jpg?response-content-disposition=inlin",
+                      "document_id": "2"
+                    },
+                    {
+                      "file_url": "https://files.s3.ap-south-1.amazonaws.com/uploads/files/sample1.jpg?response-content-disposition=inlin",
+                      "document_id": "3"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "List of file UUIDs generated for the uploaded URLs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "file_uuid": {
+                        "type": "string",
+                        "format": "uuid",
+                        "example": "03f0341d-c933-46fc-a30c-ffb3ea8afd1d"
+                      },
+                      "batch_id": {
+                        "type": "string",
+                        "example": "BATCH-55193-DRTYJ-20250811084615"
+                      },
+                      "document_id": {
+                        "type": "string",
+                        "example": "1234"
+                      }
+                    },
+                    "required": ["file_uuid", "batch_id", "document_id"]
+                  },
+                  "example": [
+                    {
+                      "batch_id": "BATCH-30732-SIYKJ-20251121113228",
+                      "document_id": "1",
+                      "file_uuid": "03f03421-c933-46fc-a30c-ffb3ea8afd1d"
+                    },
+                    {
+                      "batch_id": "BATCH-30732-SIYKJ-20251121113228",
+                      "document_id": "2",
+                      "file_uuid": "03f03422-c933-46fc-a30c-ffb3ea8afd1d"
+                    },
+                    {
+                      "batch_id": "BATCH-30732-SIYKJ-20251121113228",
+                      "document_id": "3",
+                      "file_uuid": "03f03423-c933-46fc-a30c-ffb3ea8afd1d"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Missing or empty required parameters: ['flow_uuid']"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Lentra Auth API failed",
+                      "description": "External service failure"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/verification/flow/init": {
+      "post": {
+        "tags": ["v3"],
+        "description": "Creates a flow for a given application and product type.",
+        "operationId": "Flowinit",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Token",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Access token"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "product_type",
+                  "application_id",
+                  "auth_url",
+                  "callback_url"
+                ],
+                "properties": {
+                  "product_type": {
+                    "type": "string",
+                    "description": "Product Type",
+                    "enum": ["PFL_CDL"]
+                  },
+                  "application_id": {
+                    "type": "string",
+                    "description": "Application ID"
+                  },
+                  "auth_url": {
+                    "type": "string",
+                    "description": "Auth URL provided by the client",
+                    "format": "uri"
+                },
+                  "callback_url": {
+                    "type": "string",
+                    "description": "Callback URL provided by the client",
+                    "format": "uri"
+                  },
+                  "flow_params": {
+                    "type": "object",
+                    "description": "Optional flow parameters",
+                    "additionalProperties": true
+                  }
+                },
+                "example": {
+                  "product_type": "PFL_CDL",
+                  "application_id": "12321321",
+                  "auth_url": "https://6964365893556.serviceurl.in/express-journey/core/auth-token",
+                  "callback_url": "https://6964365893556.serviceurl.in/express-journey/core/v2/atlas/callback",
+                  "flow_params": {}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "flow_uuid": {
+                      "type": "string",
+                      "format": "uuid",
+                      "example": "ec57821d-d766-4e24-81ef-a2768094511b"
+                    }
+                  },
+                  "required": ["flow_uuid"],
+                  "example": {
+                    "flow_uuid": "ec57821d-d766-4e24-81ef-a2768094511b"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid token"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Missing or empty required parameters: ['application_id']"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/verification/status": {
+      "get": {
+        "tags": ["v3"],
+        "description": "API to fetch status for a given flow.",
+        "operationId": "Status",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Token",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Access token"
+          },
+          {
+            "in": "query",
+            "name": "flow_uuid",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true,
+            "description": "UUID of the flow"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status response for all files and the master status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "upload_status": {
+                      "type": "string",
+                      "description": "Overall master status based on file statuses",
+                      "enum": ["NOT_STARTED", "FAILED", "IN_PROGRESS", "SUCCESS"],
+                      "example": "NOT_STARTED"
+                    },
+                    "processing_status": {
+                      "type": "string",
+                      "description": "Overall master status based on file statuses",
+                      "enum": ["NOT_STARTED", "FAILED", "IN_PROGRESS", "SUCCESS", "PENDING"],
+                      "example": "IN_PROGRESS"
+                    },
+                    "crossheck_status": {
+                      "type": "string",
+                      "description": "Overall master status based on file statuses",
+                      "enum": ["NOT_STARTED", "COMPLETED", "PENDING"],
+                      "example": "PENDING"
+                    },
+                    "master_status": {
+                      "type": "string",
+                      "description": "Overall status",
+                      "enum": ["NOT_STARTED", "FAILED", "IN_PROGRESS", "SUCCESS"],
+                      "example": "SUCCESS"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Missing or invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Missing required ['flow_uuid'] parameters",
+                      "description": "The client did not provide a required query parameter."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid token",
+                      "description": "Authentication token is invalid or expired"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Flow not found with provided flow_uuid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Flow not found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/verification/extracts": {
+  "get": {
+    "tags": ["v3"],
+    "description": "API to fetch processed verification results including OCR data and cross-check comparisons for a given flow.",
+    "operationId": "ProcessedVerificationResults",
+    "parameters": [
+      {
+        "in": "header",
+        "name": "Token",
+        "schema": {
+          "type": "string"
+        },
+        "required": true,
+        "description": "Access token"
+      },
+      {
+        "in": "query",
+        "name": "flow_uuid",
+        "schema": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "required": true,
+        "description": "UUID of the flow whose verification result is requested"
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Verification processed results for all documents in the flow",
+        "content": {
+          "application/json": {
+            "schema": {"$ref": "#/components/schemas/CallbackData"},
+          }
+        }
+      },
+      "400": {
+        "description": "Bad Request - Missing or invalid parameters",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Missing required ['flow_uuid'] parameters"
+                }
+              }
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Unauthorized - Invalid or missing token",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Invalid token"
+                }
+              }
+            }
+          }
+        }
+      },
+      "409": {
+        "description": "Flow not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Flow not found"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+  }
+}
