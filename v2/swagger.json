@@ -1,0 +1,5834 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "**APIs for verification service**",
+    "title": "Verification Service",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "authentication",
+      "description": "authentication endpoints"
+    },
+    {
+      "name": "v2",
+      "description": "v2 endpoints"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "Pan": {
+  "type": "object",
+  "properties": {
+    "document_type": {
+      "type": "string",
+      "example": "PAN"
+    },
+    "name_as_per_pan": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.95
+        },
+        "value": {
+          "type": "string",
+          "example": "D MANIKANDAN DURAISAMY"
+        }
+      }
+    },
+    "father_name": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.94
+        },
+        "value": {
+          "type": "string",
+          "example": "DURAISAMY"
+        }
+      }
+    },
+    "dob": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.98
+        },
+        "value": {
+          "type": "string",
+          "example": "16/07/1986"
+        }
+      }
+    },
+    "pan_number": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.99
+        },
+        "value": {
+          "type": "string",
+          "example": "PLZPM5601F"
+        }
+      }
+    },
+    "document_quality_flag": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.97
+        },
+        "value": {
+          "type": "string",
+          "enum": ["original", "xerox_copy", "photo_of_photo"],
+          "example": "original"
+        }
+      }
+    }
+  }
+},
+      "Aadhaar": {
+        "type": "object",
+        "properties": {
+          "document_type": {
+            "type": "string",
+            "example": "AADHAAR"
+          },
+          "name": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.95
+              },
+              "value": {
+                "type": "string",
+                "example": "ASHMIT KUMAR"
+              }
+            }
+          },
+          "address": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.95
+              },
+              "value": {
+                "type": "string",
+                "example": "S/O Mukesh Kumar, H. No. E - 376, No. 15 Ashok Nagar Shahdara Mandoli, Saboli North East Delhi - 110093"
+              }
+            }
+          },
+          "formatted_address": {
+            "type": "object",
+            "properties": {
+              "state": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "confidence_score": {
+                    "type": "number",
+                    "example": 1
+                  }
+                }
+              },
+              "postcode": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "example": "110093"
+                  },
+                  "confidence_score": {
+                    "type": "number",
+                    "example": 1
+                  }
+                }
+              },
+              "address_line_1": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "example": "no. e 376 no. 15 ashok nagar shahdara"
+                  },
+                  "confidence_score": {
+                    "type": "number",
+                    "example": 1
+                  }
+                }
+              },
+              "address_line_2": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "example": "s/o mukesh kumar h. mandoli saboli north east"
+                  },
+                  "confidence_score": {
+                    "type": "number",
+                    "example": 1
+                  }
+                }
+              },
+              "city": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "example": "delhi"
+                  },
+                  "confidence_score": {
+                    "type": "number",
+                    "example": 1
+                  }
+                }
+              }
+            }
+          },
+          "aadhaar_number": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.99
+              },
+              "value": {
+                "type": "string",
+                "example": "1234 5678 9012"
+              },
+              "redact_url": {
+                "type": "string",
+                "example": "https://my-dummy-bucket.s3.amazonaws.com/path/to/aadhaar.jpeg"
+              }
+            }
+          },
+          "date_of_birth": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.98
+              },
+              "value": {
+                "type": "string",
+                "example": "16/07/1986"
+              }
+            }
+          }
+        }
+      },
+      "GST": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "document_type": {
+                "type": "string",
+                "example": "GST_CERT"
+              },
+              "address": {
+                "type": "object",
+                "properties": {
+                  "confidence_score": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 0.95
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": "S/O Mukesh Kumar, H. No. E - 376, No. 15 Ashok Nagar Shahdara Mandoli, Saboli North East Delhi - 110093"
+                  }
+                }
+              },
+              "formatted_address": {
+                "type": "object",
+                "properties": {
+                  "state": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string",
+                        "example": ""
+                      },
+                      "confidence_score": {
+                        "type": "number",
+                        "example": 1
+                      }
+                    }
+                  },
+                  "postcode": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string",
+                        "example": "110093"
+                      },
+                      "confidence_score": {
+                        "type": "number",
+                        "example": 1
+                      }
+                    }
+                  },
+                  "address_line_1": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string",
+                        "example": "no. e 376 no. 15 ashok nagar shahdara"
+                      },
+                      "confidence_score": {
+                        "type": "number",
+                        "example": 1
+                      }
+                    }
+                  },
+                  "address_line_2": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string",
+                        "example": "s/o mukesh kumar h. mandoli saboli north east"
+                      },
+                      "confidence_score": {
+                        "type": "number",
+                        "example": 1
+                      }
+                    }
+                  },
+                  "city": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string",
+                        "example": "delhi"
+                      },
+                      "confidence_score": {
+                        "type": "number",
+                        "example": 1
+                      }
+                    }
+                  }
+                }
+              },
+              "constitution_of_business": {
+                "type": "object",
+                "properties": {
+                  "confidence_score": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 1.0
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": "Proprietorship"
+                  }
+                }
+              },
+              "date_of_issue": {
+                "type": "object",
+                "properties": {
+                  "confidence_score": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 1.0
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": "28/10/2021"
+                  }
+                }
+              },
+              "gst_number": {
+                "type": "object",
+                "properties": {
+                  "confidence_score": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 1.0
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": "08ADEPN8420A1AQ"
+                  }
+                }
+              },
+              "legal_name": {
+                "type": "object",
+                "properties": {
+                  "confidence_score": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 1.0
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": "MUKUT BIHARI NUWAL"
+                  }
+                }
+              },
+              "validity_from": {
+                "type": "object",
+                "properties": {
+                  "confidence_score": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 1.0
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": "28/10/2021"
+                  }
+                }
+              },
+              "validity_to": {
+                "type": "object",
+                "properties": {
+                  "confidence_score": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 1.0
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": "Not Applicable"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "EBill": {
+        "type": "object",
+        "properties": {
+          "document_type": {
+            "type": "string",
+            "example": "EBILL"
+          },
+          "address": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.95
+              },
+              "value": {
+                "type": "string",
+                "example": "S/O Mukesh Kumar, H. No. E - 376, No. 15 Ashok Nagar Shahdara Mandoli, Saboli North East Delhi - 110093"
+              }
+            }
+          },
+          "formatted_address": {
+            "type": "object",
+            "properties": {
+              "state": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "confidence_score": {
+                    "type": "number",
+                    "example": 1
+                  }
+                }
+              },
+              "postcode": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "example": "110093"
+                  },
+                  "confidence_score": {
+                    "type": "number",
+                    "example": 1
+                  }
+                }
+              },
+              "address_line_1": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "example": "no. e 376 no. 15 ashok nagar shahdara"
+                  },
+                  "confidence_score": {
+                    "type": "number",
+                    "example": 1
+                  }
+                }
+              },
+              "address_line_2": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "example": "s/o mukesh kumar h. mandoli saboli north east"
+                  },
+                  "confidence_score": {
+                    "type": "number",
+                    "example": 1
+                  }
+                }
+              },
+              "city": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "example": "delhi"
+                  },
+                  "confidence_score": {
+                    "type": "number",
+                    "example": 1
+                  }
+                }
+              }
+            }
+          },
+          "bill_amount": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.95
+              },
+              "value": {
+                "type": "string",
+                "example": "2500"
+              }
+            }
+          },
+          "bill_date": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.95
+              },
+              "value": {
+                "type": "string",
+                "example": "10-Feb-20"
+              }
+            }
+          },
+          "name": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.95
+              },
+              "value": {
+                "type": "string",
+                "example": "SHRI VIJAY LAXMAN MAHAJAN,P.N.8+9"
+              }
+            }
+          }
+        }
+      },
+      "Udyam": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "document_type": {
+                "type": "string",
+                "example": "UDYAM_CERT"
+              },
+              "address": {
+                "type": "object",
+                "properties": {
+                  "confidence_score": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 0.95
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": "S/O Mukesh Kumar, H. No. E - 376, No. 15 Ashok Nagar Shahdara Mandoli, Saboli North East Delhi - 110093"
+                  }
+                }
+              },
+              "formatted_address": {
+                "type": "object",
+                "properties": {
+                  "state": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string",
+                        "example": ""
+                      },
+                      "confidence_score": {
+                        "type": "number",
+                        "example": 1
+                      }
+                    }
+                  },
+                  "postcode": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string",
+                        "example": "110093"
+                      },
+                      "confidence_score": {
+                        "type": "number",
+                        "example": 1
+                      }
+                    }
+                  },
+                  "address_line_1": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string",
+                        "example": "no. e 376 no. 15 ashok nagar shahdara"
+                      },
+                      "confidence_score": {
+                        "type": "number",
+                        "example": 1
+                      }
+                    }
+                  },
+                  "address_line_2": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string",
+                        "example": "s/o mukesh kumar h. mandoli saboli north east"
+                      },
+                      "confidence_score": {
+                        "type": "number",
+                        "example": 1
+                      }
+                    }
+                  },
+                  "city": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string",
+                        "example": "delhi"
+                      },
+                      "confidence_score": {
+                        "type": "number",
+                        "example": 1
+                      }
+                    }
+                  }
+                }
+              },
+              "date_of_commencement_of_business": {
+                "type": "object",
+                "properties": {
+                  "confidence_score": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 1.0
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": "29/01/2021"
+                  }
+                }
+              },
+              "date_of_incorporation": {
+                "type": "object",
+                "properties": {
+                  "confidence_score": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 1.0
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": "29/01/2021"
+                  }
+                }
+              },
+              "date_of_udyam_registration": {
+                "type": "object",
+                "properties": {
+                  "confidence_score": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 1.0
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": "28/02/2021"
+                  }
+                }
+              },
+              "email_id": {
+                "type": "object",
+                "properties": {
+                  "confidence_score": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 1.0
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": "prasadkadam@gmail.com"
+                  }
+                }
+              },
+              "enterprise_name": {
+                "type": "object",
+                "properties": {
+                  "confidence_score": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 1.0
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": "PRASAD SAHEBRAO"
+                  }
+                }
+              },
+              "gender": {
+                "type": "object",
+                "properties": {
+                  "confidence_score": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 1.0
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": "Male"
+                  }
+                }
+              },
+              "major_activity": {
+                "type": "object",
+                "properties": {
+                  "confidence_score": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 1.0
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": "SERVICES"
+                  }
+                }
+              },
+              "mobile_number": {
+                "type": "object",
+                "properties": {
+                  "confidence_score": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 1.0
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": "8723767575"
+                  }
+                }
+              },
+              "name_of_unit": {
+                "type": "object",
+                "properties": {
+                  "confidence_score": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 1.0
+                  },
+                  "value": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": ["Prasad Sahebrao Kadam", "Shaurya Engineering"]
+                  }
+                }
+              },
+              "nic_5_digit_code": {
+                "type": "object",
+                "properties": {
+                  "confidence_score": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 1.0
+                  },
+                  "value": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": ["32909", "74909"]
+                  }
+                }
+              },
+              "owner_name": {
+                "type": "object",
+                "properties": {
+                  "confidence_score": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 1.0
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": "PRASAD SAHEBRAO KADAM"
+                  }
+                }
+              },
+              "pan_number": {
+                "type": "object",
+                "properties": {
+                  "confidence_score": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 1.0
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": "DOIPK1777J"
+                  }
+                }
+              },
+              "social_category": {
+                "type": "object",
+                "properties": {
+                  "confidence_score": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 1.0
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": "General"
+                  }
+                }
+              },
+              "type_of_enterprise": {
+                "type": "object",
+                "properties": {
+                  "confidence_score": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 1.0
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": "Micro"
+                  }
+                }
+              },
+              "type_of_organisation": {
+                "type": "object",
+                "properties": {
+                  "confidence_score": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 1.0
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": "Proprietary"
+                  }
+                }
+              },
+              "udyam_registration_number": {
+                "type": "object",
+                "properties": {
+                  "confidence_score": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 1.0
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": "UDYAM-MH-26-0012345"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "BankStatement": {
+        "type": "object",
+        "properties": {
+          "document_type": {
+            "type": "string",
+            "example": "BANK_STATEMENT"
+          },
+          "account_number": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 1.0
+              },
+              "value": {
+                "type": "string",
+                "example": "101201506868"
+              }
+            }
+          },
+          "bank_name": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 1.0
+              },
+              "value": {
+                "type": "string",
+                "example": "ICICI Bank"
+              }
+            }
+          },
+          "ifsc_code": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 1.0
+              },
+              "value": {
+                "type": "string",
+                "example": "ICIC0001012"
+              }
+            }
+          },
+          "name": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 1.0
+              },
+              "value": {
+                "type": "string",
+                "example": "MRS.VANITA SURI"
+              }
+            }
+          },
+          "statement_period_from": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 1.0
+              },
+              "value": {
+                "type": "string",
+                "example": "March 06, 2023"
+              }
+            }
+          },
+          "statement_period_to": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 1.0
+              },
+              "value": {
+                "type": "string",
+                "example": "March 06, 2024"
+              }
+            }
+          }
+        }
+      },
+      "ShopActLicense": {
+        "type": "object",
+        "properties": {
+          "registration_number": {
+            "type": "string",
+            "example": "MH12A1234567",
+            "description": "Registration number (can also be referred to as application number or आयडी क्रमांक)."
+          },
+          "receipt_id": {
+            "type": "string",
+            "example": "RECPT20250001",
+            "description": "Receipt ID (can also be referred to as application number or पावती क्रमांक)."
+          },
+          "name_of_establishment": {
+            "type": "string",
+            "example": "ABC Enterprises",
+            "description": "Name of the registered establishment."
+          },
+          "name_of_employer": {
+            "type": "string",
+            "example": "John Doe",
+            "description": "Name of the employer or proprietor of the establishment."
+          },
+          "nature_of_business": {
+            "type": "string",
+            "example": "Manufacturing of garments",
+            "description": "Nature of the business or operations carried out."
+          },
+          "address": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.95
+              },
+              "value": {
+                "type": "string",
+                "example": "S/O Mukesh Kumar, H. No. E - 376, No. 15 Ashok Nagar Shahdara Mandoli, Saboli North East Delhi - 110093"
+              }
+            }
+          },
+          "formatted_address": {
+            "type": "object",
+            "properties": {
+              "state": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "confidence_score": {
+                    "type": "number",
+                    "example": 1
+                  }
+                }
+              },
+              "postcode": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "example": "110093"
+                  },
+                  "confidence_score": {
+                    "type": "number",
+                    "example": 1
+                  }
+                }
+              },
+              "address_line_1": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "example": "no. e 376 no. 15 ashok nagar shahdara"
+                  },
+                  "confidence_score": {
+                    "type": "number",
+                    "example": 1
+                  }
+                }
+              },
+              "address_line_2": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "example": "s/o mukesh kumar h. mandoli saboli north east"
+                  },
+                  "confidence_score": {
+                    "type": "number",
+                    "example": 1
+                  }
+                }
+              },
+              "city": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "example": "delhi"
+                  },
+                  "confidence_score": {
+                    "type": "number",
+                    "example": 1
+                  }
+                }
+              }
+            }
+          },
+          "mobile_number": {
+            "type": "string",
+            "example": "9876543210",
+            "description": "Mobile number of the employer or primary contact."
+          },
+          "email": {
+            "type": "string",
+            "example": "johndoe@example.com",
+            "description": "Email address of the employer or establishment."
+          },
+          "total_employees": {
+            "type": "integer",
+            "example": 25,
+            "description": "Total number of employees in the establishment."
+          }
+        }
+      },
+      "FSSAI": {
+        "type": "object",
+        "properties": {
+          "registration_number": {
+            "type": "string",
+            "example": "BL20250678",
+            "description": "Unique registration number of the business license."
+          },
+          "name": {
+            "type": "string",
+            "example": "Raj Traders",
+            "description": "Name of the business or license holder."
+          },
+          "address_of_business_operator": {
+            "type": "string",
+            "example": "Flat 101, Green Residency, Nagpur",
+            "description": "Residential or operational address of the business operator."
+          },
+          "address_of_business": {
+            "type": "string",
+            "example": "Plot 45, MIDC Area, Nagpur, Maharashtra - 440001",
+            "description": "Registered address of the business establishment."
+          },
+          "kind_of_business": {
+            "type": "string",
+            "example": "Wholesale Grocery Supplier",
+            "description": "Nature or type of business activities undertaken."
+          },
+          "issued_on": {
+            "type": "string",
+            "format": "date",
+            "example": "2024-07-01",
+            "description": "Date on which the license was issued."
+          },
+          "valid_upto": {
+            "type": "string",
+            "format": "date",
+            "example": "2029-06-30",
+            "description": "Validity end date of the business license."
+          }
+        }
+      },
+      "PurchaseOrder": {
+  "type": "object",
+  "properties": {
+    "document_type": {
+      "type": "string",
+      "example": "PURCHASE_ORDER"
+    },
+    "seller_name": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.0
+        },
+        "value": {
+          "type": "string",
+          "example": "ABC Pvt Ltd"
+        }
+      }
+    },
+    "seller_gstin": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "example": "27ABCDE1234F1Z5" }
+      }
+    },
+    "buyer_name": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "example": "XYZ Industries" }
+      }
+    },
+    "buyer_gstin": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "example": "27XYZDE1234F1Z9" }
+      }
+    },
+    "total_invoice_amount": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "example": "₹ 1,50,000" }
+      }
+    }
+  }
+},
+      "Index2": {
+  "type": "object",
+  "properties": {
+    "document_type": {
+      "type": "string",
+      "example": "INDEX_2"
+    },
+    "owner_name": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": { "type": "string" },
+          "example": ["Rahul Patil", "Sneha Patil"]
+        },
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.92
+        }
+      }
+    },
+    "mortgagor_name": {
+      "type": "object",
+      "properties": {
+        "value": { "type": "string", "example": "HDFC Bank Ltd." },
+        "confidence_score": { "type": "number", "format": "float", "example": 0.88 }
+      }
+    },
+    "loan_amount": {
+      "type": "object",
+      "properties": {
+        "value": { "type": "string", "example": "₹ 12,50,000" },
+        "confidence_score": { "type": "number", "format": "float", "example": 0.9 }
+      }
+    },
+    "property_valuation": {
+      "type": "object",
+      "properties": {
+        "value": { "type": "string", "example": "₹ 25,00,000" },
+        "confidence_score": { "type": "number", "format": "float", "example": 0.87 }
+      }
+    },
+    "survey_number": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": { "type": "string" },
+          "example": ["Gat 45", "Survey 102/3"]
+        },
+        "confidence_score": { "type": "number", "format": "float", "example": 0.9 }
+      }
+    },
+    "area_of_constructed_property": {
+      "type": "object",
+      "properties": {
+        "value": { "type": "string", "example": "1200 sq.ft" },
+        "confidence_score": { "type": "number", "format": "float", "example": 0.85 }
+      }
+    },
+    "area_of_land": {
+      "type": "object",
+      "properties": {
+        "value": { "type": "string", "example": "3000 sq.ft" },
+        "confidence_score": { "type": "number", "format": "float", "example": 0.86 }
+      }
+    },
+    "date_of_filing": {
+      "type": "object",
+      "properties": {
+        "value": { "type": "string", "example": "10/02/2024" },
+        "confidence_score": { "type": "number", "format": "float", "example": 0.89 }
+      }
+    },
+    "date_of_mortgage": {
+      "type": "object",
+      "properties": {
+        "value": { "type": "string", "example": "12/02/2024" },
+        "confidence_score": { "type": "number", "format": "float", "example": 0.88 }
+      }
+    }
+  }
+},
+      
+      "MarginMoneyReceipt": {
+  "type": "object",
+  "properties": {
+    "document_type": {
+      "type": "string",
+      "example": "MARGIN_MONEY_RECEIPT"
+    },
+    "customer_name": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.95
+        },
+        "value": {
+          "type": "string",
+          "example": "John Doe"
+        }
+      }
+    },
+    "mmr_amount": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.97
+        },
+        "value": {
+          "type": "string",
+          "example": "50000"
+        }
+      }
+    },
+    "dealer_name": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.96
+        },
+        "value": {
+          "type": "string",
+          "example": "ABC Motors Pvt Ltd"
+        }
+      }
+    },
+    "product_name": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.92
+        },
+        "value": {
+          "type": "string",
+          "example": "Hyundai Creta"
+        }
+      }
+    },
+    "hypothecation_status": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.94
+        },
+        "value": {
+          "type": "string",
+          "example": "Hypothecated"
+        }
+      }
+    }
+  }},
+      "DebitNote": {
+  "type": "object",
+  "properties": {
+    "document_type": {
+      "type": "string",
+      "example": "DEBIT_NOTE"
+    },
+    "customer_name": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.95
+        },
+        "value": {
+          "type": "string",
+          "example": "John Doe"
+        }
+      }
+    },
+    "insurance_charges": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.97
+        },
+        "value": {
+          "type": "string",
+          "example": "1200"
+        }
+      }
+    },
+    "rto_charges": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.93
+        },
+        "value": {
+          "type": "string",
+          "example": "4500"
+        }
+      }
+    },
+    "accessory_charges": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.91
+        },
+        "value": {
+          "type": "string",
+          "example": "2500"
+        }
+      }
+    },
+    "hypothecation_charges": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.92
+        },
+        "value": {
+          "type": "string",
+          "example": "800"
+        }
+      }
+    }
+  }},
+      "Insurance": {
+  "type": "object",
+  "properties": {
+    "document_type": {
+      "type": "string",
+      "example": "INSURANCE"
+    },
+    "insured_name": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.96
+        },
+        "value": {
+          "type": "string",
+          "example": "John Doe"
+        }
+      }
+    },
+    "insurance_company": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.97
+        },
+        "value": {
+          "type": "string",
+          "example": "HDFC ERGO General Insurance"
+        }
+      }
+    },
+    "policy_number": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.95
+        },
+        "value": {
+          "type": "string",
+          "example": "POL123456789"
+        }
+      }
+    },
+    "engine_number": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.94
+        },
+        "value": {
+          "type": "string",
+          "example": "ENGH1234567"
+        }
+      }
+    },
+    "chassis_number": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.93
+        },
+        "value": {
+          "type": "string",
+          "example": "CHS789012345"
+        }
+      }
+    },
+    "hypothecation_status": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.91
+        },
+        "value": {
+          "type": "string",
+          "example": "Hypothecated"
+        }
+      }
+    },
+    "tenure": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.9
+        },
+        "value": {
+          "type": "string",
+          "example": "1 Year"
+        }
+      }
+    },
+    "IDV": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.93
+        },
+        "value": {
+          "type": "string",
+          "example": "850000"
+        }
+      }
+    },
+    "gross_premium": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.92
+        },
+        "value": {
+          "type": "string",
+          "example": "12000"
+        }
+      }
+    },
+    "start_date": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.95
+        },
+        "value": {
+          "type": "string",
+          "example": "2024-04-01"
+        }
+      }
+    },
+    "end_date": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.95
+        },
+        "value": {
+          "type": "string",
+          "example": "2025-03-31"
+        }
+      }
+    }
+  }
+},
+      "Invoice": {
+        "type": "object",
+        "properties": {
+          "document_type": {
+            "type": "string",
+            "example": "INVOICE"
+          },
+          "customer_name": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.95
+              },
+              "value": {
+                "type": "string",
+                "example": "John Doe"
+              }
+            }
+          },
+          "dealer_name": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.96
+              },
+              "value": {
+                "type": "string",
+                "example": "ABC Motors Pvt Ltd"
+              }
+            }
+          },
+          "product_name": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.94
+              },
+              "value": {
+                "type": "string",
+                "example": "Hyundai Creta"
+              }
+            }
+          },
+          "model_name": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.93
+              },
+              "value": {
+                "type": "string",
+                "example": "SX Plus 1.5 Diesel"
+              }
+            }
+          },
+          "engine_number": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.92
+              },
+              "value": {
+                "type": "string",
+                "example": "ENGH1234567"
+              }
+            }
+          },
+          "chassis_number": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.91
+              },
+              "value": {
+                "type": "string",
+                "example": "CHS789012345"
+              }
+            }
+          },
+          "hypothecation_status": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.90
+              },
+              "value": {
+                "type": "string",
+                "example": "Hypothecated"
+              }
+            }
+          },
+          "invoice_amount": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.95
+              },
+              "value": {
+                "type": "string",
+                "example": "850000"
+              }
+            }
+          }
+        }
+      },
+      "RtoForm26": {
+        "type": "object",
+        "properties": {
+          "document_type": {
+            "type": "string",
+            "example": "RTO_FORM_26"
+          },
+          "signatures_found": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.99
+              },
+              "value": {
+                "type": "integer",
+                "example": 2
+              }
+            }
+          },
+          "signature_1": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.95
+              },
+              "value": {
+                "type": "string",
+                "example": "John Doe"
+              }
+            }
+          },
+          "signature_2": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.94
+              },
+              "value": {
+                "type": "string",
+                "example": "Jane Smith"
+              }
+            }
+          }
+        }},
+      "RtoForm29": {
+        "type": "object",
+        "properties": {
+          "document_type": {
+            "type": "string",
+            "example": "RTO_FORM_29"
+          },
+          "signatures_found": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.99
+              },
+              "value": {
+                "type": "integer",
+                "example": 2
+              }
+            }
+          },
+          "signature_1": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.95
+              },
+              "value": {
+                "type": "string",
+                "example": "John Doe"
+              }
+            }
+          },
+          "signature_2": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.94
+              },
+              "value": {
+                "type": "string",
+                "example": "Jane Smith"
+              }
+            }
+          }
+        }},
+      "RtoForm30": {
+        "type": "object",
+        "properties": {
+          "document_type": {
+            "type": "string",
+            "example": "RTO_FORM_30"
+          },
+          "signatures_found": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.99
+              },
+              "value": {
+                "type": "integer",
+                "example": 2
+              }
+            }
+          },
+          "signature_1": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.95
+              },
+              "value": {
+                "type": "string",
+                "example": "John Doe"
+              }
+            }
+          },
+          "signature_2": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.94
+              },
+              "value": {
+                "type": "string",
+                "example": "Jane Smith"
+              }
+            }
+          }
+        }},
+      "RtoForm34": {
+        "type": "object",
+        "properties": {
+          "document_type": {
+            "type": "string",
+            "example": "RTO_FORM_30"
+          },
+          "signatures_found": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.99
+              },
+              "value": {
+                "type": "integer",
+                "example": 2
+              }
+            }
+          },
+          "signature_1": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.95
+              },
+              "value": {
+                "type": "string",
+                "example": "John Doe"
+              }
+            }
+          },
+          "signature_2": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.94
+              },
+              "value": {
+                "type": "string",
+                "example": "Jane Smith"
+              }
+            }
+          }
+        }},
+      "RtoForm35": {
+        "type": "object",
+        "properties": {
+          "document_type": {
+            "type": "string",
+            "example": "RTO_FORM_30"
+          },
+          "signatures_found": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.99
+              },
+              "value": {
+                "type": "integer",
+                "example": 2
+              }
+            }
+          },
+          "signature_1": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.95
+              },
+              "value": {
+                "type": "string",
+                "example": "John Doe"
+              }
+            }
+          },
+          "signature_2": {
+            "type": "object",
+            "properties": {
+              "confidence_score": {
+                "type": "number",
+                "format": "float",
+                "example": 0.94
+              },
+              "value": {
+                "type": "string",
+                "example": "Jane Smith"
+              }
+            }
+          }
+        }},
+
+      "Satbara": {
+        "type": "object",
+        "properties": {
+          "document_type": {
+            "type": "string",
+            "example": "SATBARA"
+          },
+          "applicant_owner_name": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.95
+              },
+              "value": {
+                "type": "string",
+                "example": "Ramesh Kumar"
+              }
+            }
+          },
+          "village_name": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.9
+              },
+              "value": {
+                "type": "string",
+                "example": "Village XYZ"
+              }
+            }
+          },
+          "bhogwatdar_number": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.92
+              },
+              "value": {
+                "type": "string",
+                "example": "12345"
+              }
+            }
+          },
+          "gat_no": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.91
+              },
+              "value": {
+                "type": "string",
+                "example": "67"
+              }
+            }
+          },
+          "taluka": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.93
+              },
+              "value": {
+                "type": "string",
+                "example": "Taluka ABC"
+              }
+            }
+          },
+          "district": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.94
+              },
+              "value": {
+                "type": "string",
+                "example": "District XYZ"
+              }
+            }
+          },
+          "ferfar_number": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.9
+              },
+              "value": {
+                "type": "string",
+                "example": "F1234"
+              }
+            }
+          },
+          "land_owner_name": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.92
+              },
+              "value": {
+                "type": "string",
+                "example": "Suresh Patil"
+              }
+            }
+          },
+          "khata_number": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.91
+              },
+              "value": {
+                "type": "string",
+                "example": "K9876"
+              }
+            }
+          },
+          "kshetra": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.9
+              },
+              "value": {
+                "type": "string",
+                "example": "Region ABC"
+              }
+            }
+          },
+          "aakar": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.89
+              },
+              "value": {
+                "type": "string",
+                "example": "2500 sq.m"
+              }
+            }
+          },
+          "kul_khand_itar_adhikar": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.88
+              },
+              "value": {
+                "type": "string",
+                "example": "Right XYZ"
+              }
+            }
+          },
+          "hypothecation_bank": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.95
+              },
+              "value": {
+                "type": "string",
+                "example": "Bank ABC"
+              }
+            }
+          },
+          "hypothecation_amount": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.93
+              },
+              "value": {
+                "type": "string",
+                "example": "500000"
+              }
+            }
+          },
+          "hypothecation_date": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.92
+              },
+              "value": {
+                "type": "string",
+                "example": "2024-04-01"
+              }
+            }
+          }
+        }
+      },
+      "SaleDeed": {
+        "type": "object",
+        "properties": {
+          "document_type": {
+            "type": "string",
+            "example": "SALE_DEED"
+          },
+          "purchaser_names": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.0
+              },
+              "value": {
+                "type": "string",
+                "example": "Rahul Shankar Patil"
+              }
+            }
+          },
+          "seller_names": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.0
+              },
+              "value": {
+                "type": "string",
+                "example": "Sanjay D. Kulkarni"
+              }
+            }
+          },
+          "agreement_date": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.0
+              },
+              "value": {
+                "type": "string",
+                "example": "05/04/2024"
+              }
+            }
+          },
+          "agreement_cost": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.0
+              },
+              "value": {
+                "type": "string",
+                "example": "₹ 12,50,000"
+              }
+            }
+          },
+          "village_name": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.0
+              },
+              "value": {
+                "type": "string",
+                "example": "Village XYZ"
+              }
+            }
+          },
+          "khata_number": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.0
+              },
+              "value": {
+                "type": "string",
+                "example": "K9876"
+              }
+            }
+          },
+          "gat_no": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.0
+              },
+              "value": {
+                "type": "string",
+                "example": "67"
+              }
+            }
+          },
+          "land_area": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.0
+              },
+              "value": {
+                "type": "string",
+                "example": "2500 sq.m"
+              }
+            }
+          },
+          "kshetra": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.0
+              },
+              "value": {
+                "type": "string",
+                "example": "Region ABC"
+              }
+            }
+          },
+          "aakar": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.0
+              },
+              "value": {
+                "type": "string",
+                "example": "2500 sq.m"
+              }
+            }
+          }
+        }
+      },
+      "GavthanCertificate": {
+        "type": "object",
+        "properties": {
+          "document_type": {
+            "type": "string",
+            "example": "GAVTHAN_CERTIFICATE"
+          },
+          "name": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.95
+              },
+              "value": {
+                "type": "string",
+                "example": "Ramesh Kumar"
+              }
+            }
+          },
+          "gat_no": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.92
+              },
+              "value": {
+                "type": "string",
+                "example": "67"
+              }
+            }
+          },
+          "stamp": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.93
+              },
+              "value": {
+                "type": "string",
+                "example": "Stamp XYZ"
+              }
+            }
+          },
+          "sign": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.94
+              },
+              "value": {
+                "type": "string",
+                "example": "Signature ABC"
+              }
+            }
+          },
+          "house_no": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.91
+              },
+              "value": {
+                "type": "string",
+                "example": "H-123"
+              }
+            }
+          }
+        }
+      },
+      "GiftDeed": {
+        "type": "object",
+        "properties": {
+          "document_type": {
+            "type": "string",
+            "example": "GIFT_DEED"
+          },
+          "gifter_name": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.0
+              },
+              "value": {
+                "type": "string",
+                "example": "Rahul Shankar Patil"
+              }
+            }
+          },
+          "gifted_to": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.0
+              },
+              "value": {
+                "type": "string",
+                "example": "Sneha R. Patil"
+              }
+            }
+          },
+          "date": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.0
+              },
+              "value": {
+                "type": "string",
+                "example": "05/04/2024"
+              }
+            }
+          }
+        }
+      },
+      "Namuna8": {
+        "type": "object",
+        "properties": {
+          "document_type": {
+            "type": "string",
+            "example": "NAMUNA_8"
+          },
+          "owner_name": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.0
+              },
+              "value": {
+                "type": "string",
+                "example": "Ramesh Kumar"
+              }
+            }
+          },
+          "village_name": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.0
+              },
+              "value": {
+                "type": "string",
+                "example": "Village XYZ"
+              }
+            }
+          },
+          "taluka": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.0
+              },
+              "value": {
+                "type": "string",
+                "example": "Taluka ABC"
+              }
+            }
+          },
+          "district": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.0
+              },
+              "value": {
+                "type": "string",
+                "example": "District XYZ"
+              }
+            }
+          },
+          "malmatta_number": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.0
+              },
+              "value": {
+                "type": "string",
+                "example": "M12345"
+              }
+            }
+          },
+          "issuance_date": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.0
+              },
+              "value": {
+                "type": "string",
+                "example": "01/04/2024"
+              }
+            }
+          }
+        }
+      },
+      "RentAgreement": {
+        "type": "object",
+        "properties": {
+          "document_type": {
+            "type": "string",
+            "example": "RENT_AGREEMENT"
+          },
+          "renter_name": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.0
+              },
+              "value": {
+                "type": "string",
+                "example": "Rahul Shankar Patil"
+              }
+            }
+          },
+          "address_of_place": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.0
+              },
+              "value": {
+                "type": "string",
+                "example": "123, MG Road, Pune"
+              }
+            }
+          },
+          "start_date": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.0
+              },
+              "value": {
+                "type": "string",
+                "example": "01/04/2024"
+              }
+            }
+          },
+          "end_date": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.0
+              },
+              "value": {
+                "type": "string",
+                "example": "31/03/2025"
+              }
+            }
+          },
+          "rent_amount": {
+            "type": "object",
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.0
+              },
+              "value": {
+                "type": "string",
+                "example": "₹ 25,000"
+              }
+            }
+          }
+        }
+      },
+      "Chatusima": {
+  "type": "object",
+  "properties": {
+    "document_type": {
+      "type": "string",
+      "example": "CHATUSIMA"
+    },
+    "owner_name": {
+      "type": "object",
+      "properties": {
+        "confidence": {
+          "type": "number",
+          "format": "float",
+          "example": 0.0
+        },
+        "value": {
+          "type": "string",
+          "example": "Ramesh Kumar"
+        }
+      }
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.95
+        },
+        "value": {
+          "type": "string",
+          "example": "S/O Mukesh Kumar, H. No. E - 376, No. 15 Ashok Nagar Shahdara Mandoli, Saboli North East Delhi - 110093"
+        }
+      }
+    },
+    "formatted_address": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "example": ""
+            },
+            "confidence_score": {
+              "type": "number",
+              "example": 1
+            }
+          }
+        },
+        "postcode": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "example": "110093"
+            },
+            "confidence_score": {
+              "type": "number",
+              "example": 1
+            }
+          }
+        },
+        "address_line_1": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "example": "no. e 376 no. 15 ashok nagar shahdara"
+            },
+            "confidence_score": {
+              "type": "number",
+              "example": 1
+            }
+          }
+        },
+        "address_line_2": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "example": "s/o mukesh kumar h. mandoli saboli north east"
+            },
+            "confidence_score": {
+              "type": "number",
+              "example": 1
+            }
+          }
+        },
+        "city": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "example": "delhi"
+            },
+            "confidence_score": {
+              "type": "number",
+              "example": 1
+            }
+          }
+        }
+      }
+    },
+    "house_number": {
+      "type": "object",
+      "properties": {
+        "confidence": {
+          "type": "number",
+          "format": "float",
+          "example": 0.0
+        },
+        "value": {
+          "type": "string",
+          "example": "H-123"
+        }
+      }
+    },
+    "taluka": {
+      "type": "object",
+      "properties": {
+        "confidence": {
+          "type": "number",
+          "format": "float",
+          "example": 0.0
+        },
+        "value": {
+          "type": "string",
+          "example": "Taluka ABC"
+        }
+      }
+    },
+    "zila": {
+      "type": "object",
+      "properties": {
+        "confidence": {
+          "type": "number",
+          "format": "float",
+          "example": 0.0
+        },
+        "value": {
+          "type": "string",
+          "example": "District XYZ"
+        }
+      }
+    },
+    "north_neighbor": {
+      "type": "object",
+      "properties": {
+        "confidence": {
+          "type": "number",
+          "format": "float",
+          "example": 0.0
+        },
+        "value": {
+          "type": "string",
+          "example": "Neighbor A"
+        }
+      }
+    },
+    "south_neighbor": {
+      "type": "object",
+      "properties": {
+        "confidence": {
+          "type": "number",
+          "format": "float",
+          "example": 0.0
+        },
+        "value": {
+          "type": "string",
+          "example": "Neighbor B"
+        }
+      }
+    },
+    "east_neighbor": {
+      "type": "object",
+      "properties": {
+        "confidence": {
+          "type": "number",
+          "format": "float",
+          "example": 0.0
+        },
+        "value": {
+          "type": "string",
+          "example": "Neighbor C"
+        }
+      }
+    },
+    "west_neighbor": {
+      "type": "object",
+      "properties": {
+        "confidence": {
+          "type": "number",
+          "format": "float",
+          "example": 0.0
+        },
+        "value": {
+          "type": "string",
+          "example": "Neighbor D"
+        }
+      }
+    },
+    "stamp_signed": {
+      "type": "object",
+      "properties": {
+        "confidence": {
+          "type": "number",
+          "format": "float",
+          "example": 0.0
+        },
+        "value": {
+          "type": "string",
+          "example": "Signed Stamp XYZ"
+        }
+      }
+    }
+  }
+},
+      "TaxInvoice": {
+  "type": "object",
+  "properties": {
+    "document_type": {
+      "type": "string",
+      "example": "TAX_INVOICE"
+    },
+    "customer_name": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.0
+        },
+        "value": {
+          "type": "string",
+          "example": "Rahul Shankar Patil"
+        }
+      }
+    },
+    "customer_address": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "example": "123, MG Road, Pune" }
+      }
+    },
+    "customer_email": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "example": "example@email.com" }
+      }
+    },
+    "customer_phone_number": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "example": "+91-9876543210" }
+      }
+    },
+    "dealership_name": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "example": "ABC Motors" }
+      }
+    },
+    "dealer_gst": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "example": "27ABCDE1234F1Z5" }
+      }
+    },
+    "dealer_address": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "example": "123 MG Road, Pune, Maharashtra 411001" }
+      }
+    },
+    "model_name": {
+    "type": "object",
+    "properties": {
+      "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+      "value": { "type": "string", "example": "Maruti Suzuki Alto LXI" }
+    }
+  },
+    "dealer_gst_handwritten": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "enum": ["yes", "no"], "example": "no" }
+      }
+    },
+    "product_type": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": {
+          "type": "array",
+          "items": { "type": "string", "example": "Scooter" }
+        }
+      }
+    },
+    "manufacturer_name": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": {
+          "type": "array",
+          "items": { "type": "string", "example": "Honda" }
+        }
+      }
+    },
+    "product_hsn_code": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": {
+          "type": "array",
+          "items": { "type": "string", "example": "8703" }
+        }
+      }
+    },
+    "serial_number": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": {
+          "type": "array",
+          "items": { "type": "string", "example": "SN123456" }
+        }
+      }
+    },
+    "imei_number": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": {
+          "type": "array",
+          "items": { "type": "string", "example": "IMEI1234567890" }
+        }
+      }
+    },
+    "total_invoice_amount": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "example": "₹ 1,25,000" }
+      }
+    },
+    "invoice_date": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "example": "01/04/2024" }
+      }
+    },
+    "invoice_number": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "example": "INV12345" }
+      }
+    },
+    "downpayment_amount": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "example": "₹ 25,000" }
+      }
+    },
+    "hypothecation_amount": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "example": "₹ 1,00,000" }
+      }
+    },
+    "hypothecation": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "enum": ["yes", "no"], "example": "yes" }
+      }
+    },
+    "dealer_sign": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "enum": ["yes", "no"], "example": "yes" }
+      }
+    },
+    "dealer_stamp": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "enum": ["yes", "no"], "example": "yes" }
+      }
+    }
+  }
+},
+      "AchForm": {
+  "type": "object",
+  "properties": {
+    "document_type": {
+      "type": "string",
+      "example": "ACH_FORM"
+    },
+    "bank_name": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "example": "State Bank of India" }
+      }
+    },
+    "bank_logo": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "enum": ["yes", "no"], "example": "yes" }
+      }
+    },
+    "date": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "example": "01/04/2024" }
+      }
+    },
+    "account_number": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "example": "123456789012" }
+      }
+    },
+    "ifsc_code": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "example": "SBIN0001234" }
+      }
+    },
+    "account_holder_name": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "example": "Rahul Shankar Patil" }
+      }
+    },
+    "customer_id": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "example": "CUST12345" }
+      }
+    },
+    "emi_amount": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "example": "₹ 15,000" }
+      }
+    },
+    "emi_amount_in_words": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "example": "Fifteen Thousand Rupees" }
+      }
+    },
+    "mobile_number": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "example": "+91-9876543210" }
+      }
+    },
+    "first_emi_date": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "example": "01/05/2024" }
+      }
+    },
+    "signatures_found": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "integer", "example": 2 }
+      }
+    },
+    "create_option_ticked": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "enum": ["yes", "no"], "example": "yes" }
+      }
+    },
+    "maximum_amount_ticked": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "enum": ["yes", "no"], "example": "no" }
+      }
+    },
+    "monthly_frequency_ticked": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "enum": ["yes", "no"], "example": "yes" }
+      }
+    },
+    "sb_account_type_ticked": {
+      "type": "object",
+      "properties": {
+        "confidence_score": { "type": "number", "format": "float", "example": 0.0 },
+        "value": { "type": "string", "enum": ["yes", "no"], "example": "no" }
+      }
+    }
+  }
+},
+      
+      "ProductSticker": {
+  "type": "object",
+  "properties": {
+    "document_type": {
+      "type": "string",
+      "example": "PRODUCT_STICKER"
+    },
+    "model": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.93
+        },
+        "value": {
+          "type": "string",
+          "example": "SAMSUNG GALAXY A14"
+        }
+      }
+    },
+    "ram": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.9
+        },
+        "value": {
+          "type": "string",
+          "example": "8GB"
+        }
+      }
+    },
+    "rom": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.9
+        },
+        "value": {
+          "type": "string",
+          "example": "128GB"
+        }
+      }
+    },
+    "imei_number": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.95
+        },
+        "value": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "356789123456789"
+          },
+          "example": ["356789123456789", "356789123456790"]
+        }
+      }
+    },
+    "product_sku": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.92
+        },
+        "value": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "SM-A145RZKDINU"
+          },
+          "example": ["SM-A145RZKDINU"]
+        }
+      }
+    },
+    "price": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.88
+        },
+        "value": {
+          "type": "number",
+          "format": "float",
+          "example": 18999.00
+        }
+      }
+    },
+    "serial_number": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.91
+        },
+        "value": {
+          "type": "string",
+          "example": "RZ8T91Q0ABC"
+        }
+      }
+    }
+  }},
+      "VoterId": {
+  "type": "object",
+  "properties": {
+    "document_type": {
+      "type": "string",
+      "example": "VOTER_ID"
+    },
+    "voter_id": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.96
+        },
+        "value": {
+          "type": "string",
+          "example": "UP/30/123/456789"
+        }
+      }
+    },
+    "name": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.94
+        },
+        "value": {
+          "type": "string",
+          "example": "RAHUL KUMAR SHARMA"
+        }
+      }
+    },
+    "date_of_birth": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.92
+        },
+        "value": {
+          "type": "string",
+          "example": "12/05/1991"
+        }
+      }
+    }
+  }
+},
+      "DrivingLicense": {
+  "type": "object",
+  "properties": {
+    "document_type": {
+      "type": "string",
+      "example": "DRIVING_LICENSE"
+    },
+    "dl_number": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.97
+        },
+        "value": {
+          "type": "string",
+          "example": "DL-0420110149646"
+        }
+      }
+    },
+    "name": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.95
+        },
+        "value": {
+          "type": "string",
+          "example": "ARUN KUMAR SINGH"
+        }
+      }
+    },
+    "date_of_birth": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.94
+        },
+        "value": {
+          "type": "string",
+          "example": "15/08/1988"
+        }
+      }
+    },
+    "state": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.93
+        },
+        "value": {
+          "type": "string",
+          "example": "Maharashtra"
+        }
+      }
+    }
+  }
+},
+      "DrugLicense": {
+  "type": "object",
+  "properties": {
+    "document_type": {
+      "type": "string",
+      "example": "DRUG_LICENSE"
+    },
+    "license_number": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.96
+        },
+        "value": {
+          "type": "string",
+          "example": "DL-MH-123456"
+        }
+      }
+    },
+    "licensee_name": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.94
+        },
+        "value": {
+          "type": "string",
+          "example": "SHARMA MEDICAL AGENCIES"
+        }
+      }
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.95
+        },
+        "value": {
+          "type": "string",
+          "example": "S/O Mukesh Kumar, H. No. E - 376, No. 15 Ashok Nagar Shahdara Mandoli, Saboli North East Delhi - 110093"
+        }
+      }
+    },
+    "formatted_address": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "example": ""
+            },
+            "confidence_score": {
+              "type": "number",
+              "example": 1
+            }
+          }
+        },
+        "postcode": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "example": "110093"
+            },
+            "confidence_score": {
+              "type": "number",
+              "example": 1
+            }
+          }
+        },
+        "address_line_1": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "example": "no. e 376 no. 15 ashok nagar shahdara"
+            },
+            "confidence_score": {
+              "type": "number",
+              "example": 1
+            }
+          }
+        },
+        "address_line_2": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "example": "s/o mukesh kumar h. mandoli saboli north east"
+            },
+            "confidence_score": {
+              "type": "number",
+              "example": 1
+            }
+          }
+        },
+        "city": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "example": "delhi"
+            },
+            "confidence_score": {
+              "type": "number",
+              "example": 1
+            }
+          }
+        }
+      }
+    }
+  }
+},
+      "Passport": {
+  "type": "object",
+  "properties": {
+    "document_type": {
+      "type": "string",
+      "example": "PASSPORT"
+    },
+    "passport_number": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.98
+        },
+        "value": {
+          "type": "string",
+          "example": "A1234567"
+        }
+      }
+    },
+    "name": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.97
+        },
+        "value": {
+          "type": "string",
+          "example": "JOHN DOE"
+        }
+      }
+    },
+    "date_of_birth": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.96
+        },
+        "value": {
+          "type": "string",
+          "example": "01/01/1990"
+        }
+      }
+    },
+    "place_of_birth": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.92
+        },
+        "value": {
+          "type": "string",
+          "example": "NEW DELHI"
+        }
+      }
+    },
+    "gender": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.95
+        },
+        "value": {
+          "type": "string",
+          "example": "M"
+        }
+      }
+    },
+    "date_of_issue": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.94
+        },
+        "value": {
+          "type": "string",
+          "example": "15/06/2015"
+        }
+      }
+    },
+    "date_of_expiry": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.93
+        },
+        "value": {
+          "type": "string",
+          "example": "14/06/2025"
+        }
+      }
+    },
+    "place_of_issue": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.91
+        },
+        "value": {
+          "type": "string",
+          "example": "NEW DELHI"
+        }
+      }
+    }
+  }
+},
+
+      "PropertyTaxReceipt": {
+  "type": "object",
+  "properties": {
+    "document_type": {
+      "type": "string",
+      "example": "PROPERTY_TAX_RECEIPT"
+    },
+    "village_name": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.95
+        },
+        "value": {
+          "type": "string",
+          "example": "MANGALPUR"
+        }
+      }
+    },
+    "owner_name": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.96
+        },
+        "value": {
+          "type": "string",
+          "example": "RAJESH KUMAR"
+        }
+      }
+    },
+    "date": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.94
+        },
+        "value": {
+          "type": "string",
+          "example": "15/03/2023"
+        }
+      }
+    },
+    "house_number": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.93
+        },
+        "value": {
+          "type": "string",
+          "example": "12/B"
+        }
+      }
+    }
+  }
+},
+      "PropertyCard": {
+  "type": "object",
+  "properties": {
+    "document_type": {
+      "type": "string",
+      "example": "PROPERTY_CARD"
+    },
+    "owner_name": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.95
+        },
+        "value": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "RAJESH KUMAR"
+          }
+        }
+      }
+    },
+    "ferfar_number": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.94
+        },
+        "value": {
+          "type": "string",
+          "example": "FER1234567"
+        }
+      }
+    },
+    "date": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.93
+        },
+        "value": {
+          "type": "string",
+          "example": "20/04/2022"
+        }
+      }
+    }
+  }
+},
+      "GunthewariCertificate": {
+  "type": "object",
+  "properties": {
+    "document_type": {
+      "type": "string",
+      "example": "GUNTHEWARI_CERTIFICATE"
+    },
+    "property_area": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.95
+        },
+        "value": {
+          "type": "string",
+          "example": "500 sq.ft"
+        }
+      }
+    },
+    "year_of_plot": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.92
+        },
+        "value": {
+          "type": "string",
+          "example": "2010"
+        }
+      }
+    },
+    "gat_number": {
+      "type": "object",
+      "properties": {
+        "confidence_score": {
+          "type": "number",
+          "format": "float",
+          "example": 0.94
+        },
+        "value": {
+          "type": "string",
+          "example": "GAT123"
+        }
+      }
+    }
+  }
+},
+      "ITR": {
+        "type": "object",
+        "properties": {
+          "document_type": { "type": "string", "example": "ITR" },
+          "assessee_name": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "string", "example": "RAHUL KUMAR" }
+            }
+          },
+          "pan_number": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "string", "example": "ABCDE1234F" }
+            }
+          },
+          "address": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "string", "example": "123, MG Road, Pune, Maharashtra" }
+            }
+          },
+          "assessment_year": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "string", "example": "2024-25" }
+            }
+          },
+          "financial_year": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "string", "example": "2023-24" }
+            }
+          },
+          "date_of_filing": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "string", "example": "31/07/2024" }
+            }
+          },
+          "acknowledgement_number": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "string", "example": "123456789012345" }
+            }
+          },
+          "income_from_salary": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "number", "format": "float", "example": 0.0 }
+            }
+          },
+          "income_from_business_profession": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "number", "format": "float", "example": 0.0 }
+            }
+          },
+          "gross_total_income": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "number", "format": "float", "example": 0.0 }
+            }
+          },
+          "total_deductions_chapter_via": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "number", "format": "float", "example": 0.0 }
+            }
+          },
+          "total_income": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "number", "format": "float", "example": 0.0 }
+            }
+          },
+          "total_tax_payable": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "number", "format": "float", "example": 0.0 }
+            }
+          },
+          "total_taxes_paid": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "number", "format": "float", "example": 0.0 }
+            }
+          },
+          "tax_due": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "number", "format": "float", "example": 0.0 }
+            }
+          },
+          "refund_due": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "number", "format": "float", "example": 0.0 }
+            }
+          }
+        }
+      },
+      "SalarySlip": {
+        "type": "object",
+        "properties": {
+          "document_type": { "type": "string", "example": "SALARY_SLIP" },
+          "address": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "string", "example": "" }
+            }
+          },
+          "bank_account_no": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "string", "example": "" }
+            }
+          },
+          "bank_name": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "string", "example": "" }
+            }
+          },
+          "company_name": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "string", "example": "" }
+            }
+          },
+          "days_in_month": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "integer", "example": 0 }
+            }
+          },
+          "deduction_income_tax_tds": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "number", "format": "float", "example": 0.0 }
+            }
+          },
+          "deduction_pf": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "number", "format": "float", "example": 0.0 }
+            }
+          },
+          "deduction_professional_tax": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "number", "format": "float", "example": 0.0 }
+            }
+          },
+          "department": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "string", "example": "" }
+            }
+          },
+          "designation": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "string", "example": "" }
+            }
+          },
+          "effective_workdays": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "integer", "example": 0 }
+            }
+          },
+          "earning_basic": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "number", "format": "float", "example": 0.0 }
+            }
+          },
+          "earning_hra": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "number", "format": "float", "example": 0.0 }
+            }
+          },
+          "employee_name": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "string", "example": "" }
+            }
+          },
+          "employee_no": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "string", "example": "" }
+            }
+          },
+          "joining_date": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "string", "example": "" }
+            }
+          },
+          "lop_days": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "integer", "example": 0 }
+            }
+          },
+          "location": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "string", "example": "" }
+            }
+          },
+          "net_pay_in_numbers": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "number", "format": "float", "example": 0.0 }
+            }
+          },
+          "net_pay_in_words": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "string", "example": "" }
+            }
+          },
+          "pan_number": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "string", "example": "" }
+            }
+          },
+          "pf_account_number": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "string", "example": "" }
+            }
+          },
+          "payslip_month": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "string", "example": "" }
+            }
+          },
+          "total_deductions": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "number", "format": "float", "example": 0.0 }
+            }
+          },
+          "total_earnings": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "number", "format": "float", "example": 0.0 }
+            }
+          },
+          "uan": {
+            "type": "object",
+            "properties": {
+              "confidence_score": { "type": "number", "format": "float", "example": 0.95 },
+              "value": { "type": "string", "example": "" }
+            }
+          }
+        }
+      },
+
+      "HTTPStatusCodes": {
+        "type": "object",
+        "properties": {
+          "200": {
+            "type": "string",
+            "description": "OK "
+          },
+          "201": {
+            "type": "string",
+            "description": "Created"
+          },
+          "401": {
+            "type": "string",
+            "description": "Authentication Error"
+          },
+          "400": {
+            "type": "string",
+            "description": "Bad Request."
+          },
+          "422": {
+            "type": "string",
+            "description": "External system error"
+          },
+          "409": {
+            "type": "string",
+            "description": "Resource conflict"
+          },
+          "410": {
+            "type": "string",
+            "description": "Resource gone"
+          }
+        }
+      },
+     "CallbackFailure": {
+    "type": "object",
+    "properties": {
+      "flow_id": {
+        "type": "string",
+        "description": "Unique identifier for the flow",
+        "example": "863d976f-44d0-4e21-9008-630ea42dc1cc"
+      },
+      "flow_params": {
+        "type": "object",
+        "description": "Optional key-value map of flow-specific parameters",
+        "additionalProperties": true,
+        "example": {}
+      },
+      "data": {
+        "type": "object",
+        "description": "Map of processed document items keyed by document_id or file_uuid.",
+        "properties": {
+          "document_id": {
+            "type": "string",
+            "description": "Document ID",
+            "example": "123"
+          },
+          "external_reference_id": {
+            "type": "string",
+            "description": "External reference identifier provided by client",
+            "example": ""
+          },
+          "file_uuid": {
+            "type": "string",
+            "description": "File UUID",
+            "example": "7df6d724-849f-4aa6-a52d-6aa9ef6a1bf0"
+          },
+          "data": {
+            "type": "object",
+            "description": "Processing error(s) or extracted fields.",
+            "additionalProperties": true,
+            "example": {
+              "processing_error": "PROCESSING_FAILED"
+            }
+          }
+        },
+        "required": ["flow_params", "file_uuid", "data"]
+      }
+    },
+    "required": ["flow_id", "data", "flow_params"],
+    "example": {
+      "flow_id": "863d976f-44d0-4e21-9008-630ea42dc1cc",
+      "flow_params": {},
+      "data": {
+        "external_reference_id": "",
+        "file_uuid": "7df6d724-849f-4aa6-a52d-6aa9ef6a1bf0",
+        "data": {
+          "processing_error": "PROCESSING_FAILED"
+        }
+      }
+    }},
+     "CallbackSuccess": {
+    "type": "object",
+    "properties": {
+      "flow_id": {
+        "type": "string",
+        "description": "Unique identifier for the flow",
+        "example": "4477b35e-07d0-4324-b301-b946a26dae67"
+      },
+      "flow_params": {
+        "type": "object",
+        "description": "Optional key-value map of flow-specific parameters",
+        "additionalProperties": true,
+        "example": {}
+      },
+      "data": {
+        "type": "object",
+        "description": "Map containing successfully processed document item.",
+        "properties": {
+          "document_id": {
+            "type": "string",
+            "description": "Document ID",
+            "example": "123"
+          },
+          "external_reference_id": {
+            "type": "string",
+            "description": "External reference identifier provided by client",
+            "example": "1q2w3e"
+          },
+          "file_uuid": {
+            "type": "string",
+            "description": "File UUID",
+            "example": "db096806-41b1-4123-891d-b97d1d3cbdfe"
+          },
+          "data": {
+            "type": "object",
+            "description": "Extracted OCR fields and their metadata.",
+            "additionalProperties": true,
+            "example": {
+              "dob": {
+                "confidence_score": 0.95,
+                "pixels": {
+                  "height": 0.0,
+                  "left": 0.0,
+                  "top": 0.0,
+                  "width": 0.0
+                },
+                "value": "14/11/1998"
+              },
+              "document_type": "PAN",
+              "is_original": {
+                "confidence_score": 0.6,
+                "pixels": {
+                  "height": 0.0,
+                  "left": 0.0,
+                  "top": 0.0,
+                  "width": 0.0
+                },
+                "value": "yes"
+              },
+              "name_as_per_pan": {
+                "confidence_score": 0.9,
+                "pixels": {
+                  "height": 0.0,
+                  "left": 0.0,
+                  "top": 0.0,
+                  "width": 0.0
+                },
+                "value": "PASHANGH RAYOMAND IRANI"
+              },
+              "pan_number": {
+                "confidence_score": 0.95,
+                "pixels": {
+                  "height": 0.0,
+                  "left": 0.0,
+                  "top": 0.0,
+                  "width": 0.0
+                },
+                "value": "AFQP19186N"
+              }
+            }
+          }
+        },
+        "required": ["flow_params", "file_uuid", "data"]
+      }
+    },
+    "required": ["flow_id", "data"],
+    "example": {
+      "flow_id": "4477b35e-07d0-4324-b301-b946a26dae67",
+      "flow_params": {},
+      "data": {
+        "external_reference_id": "1q2w3e",
+        "file_uuid": "db096806-41b1-4123-891d-b97d1d3cbdfe",
+        "data": {
+          "dob": {
+            "confidence_score": 0.95,
+            "pixels": {
+              "height": 0.0,
+              "left": 0.0,
+              "top": 0.0,
+              "width": 0.0
+            },
+            "value": "14/11/1998"
+          },
+          "document_type": "PAN",
+          "is_original": {
+            "confidence_score": 0.6,
+            "pixels": {
+              "height": 0.0,
+              "left": 0.0,
+              "top": 0.0,
+              "width": 0.0
+            },
+            "value": "yes"
+          },
+          "name_as_per_pan": {
+            "confidence_score": 0.9,
+            "pixels": {
+              "height": 0.0,
+              "left": 0.0,
+              "top": 0.0,
+              "width": 0.0
+            },
+            "value": "PASHANGH RAYOMAND IRANI"
+          },
+          "pan_number": {
+            "confidence_score": 0.95,
+            "pixels": {
+              "height": 0.0,
+              "left": 0.0,
+              "top": 0.0,
+              "width": 0.0
+            },
+            "value": "AFQP19186N"
+          }
+        }
+      }
+    }},
+
+
+    }
+  },
+  "paths": {
+    "/v1/verification/authtoken": {
+      "post": {
+        "tags": ["authentication"],
+        "summary": "Generate JWT Token",
+        "description": "Accepts Client-ID and Client-Secret in headers to generate a JWT access token.",
+        "operationId": "generateToken",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Client-Id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Client ID provided to the application"
+          },
+          {
+            "in": "header",
+            "name": "Client-Secret",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Client Secret associated with the client ID"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "JWT token generated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "access_token": {
+                      "type": "string",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                    },
+                    "expires_in": {
+                      "type": "integer",
+                      "example": 3600
+                    },
+                    "refresh_token": {
+                      "type": "string",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing Client-Id or Client-Secret",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Missing Client-Id or Client-Secret"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Client-Id or Client-Secret",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid Client-Id or Client-Secret"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/verification/refresh-token": {
+      "post": {
+        "tags": ["authentication"],
+        "summary": "Refresh Token",
+        "description": "Accepts an refresh token and issues a new JWT token.",
+        "operationId": "refreshToken",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Token",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Refresh token"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "JWT token refreshed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "access_token": {
+                      "type": "string",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                    },
+                    "expires_in": {
+                      "type": "integer",
+                      "example": 3600
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid token"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/verification/multiupload": {
+      "post": {
+        "tags": ["v2"],
+        "description": "Async API to upload multiple file URLs for verification processing.",
+        "operationId": "Multiupload",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Token",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "JWT token used for authentication"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "flow_id": {
+                    "type": "string",
+                    "format": "uuid",
+                    "description": "Flow ID associated with the verification"
+                  },
+                  "file_urls": {
+                    "type": "array",
+                    "description": "List of file objects containing S3 URLs and metadata",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "file_url": {
+                          "type": "string",
+                          "format": "uri",
+                          "description": "S3 URL of the file"
+                        },
+                        "document_id": {
+                          "type": "string",
+                          "description": "External document ID for tracking"
+                        },
+                        "submission_mode": {
+                          "type": "string",
+                          "description": "submission mode of document"
+                        }
+                      },
+                      "required": ["file_url", "document_id"]
+                    }
+                  }
+                },
+                "required": ["flow_id", "file_urls"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "List of file UUIDs generated for the uploaded URLs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "file_url": {
+                        "type": "string",
+                        "format": "uri",
+                        "example": "https://altas-integration-docs.s3.ap-south-1.amazonaws.com/Image_20250623_181139_394.jpeg"
+                      },
+                      "file_uuid": {
+                        "type": "string",
+                        "format": "uuid",
+                        "example": "03f0341d-c933-46fc-a30c-ffb3ea8afd1d"
+                      },
+                      "batch_id": {
+                        "type": "string",
+                        "example": "BATCH-55193-DRTYJ-20250811084615"
+                      },
+                      "document_id": {
+                        "type": "string",
+                        "example": "1234"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Missing or empty required parameters: ['flow_id']"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Lentra Auth API failed",
+                      "description": "External service failure"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/verification/flow/init": {
+      "post": {
+        "tags": ["v2"],
+        "description": "Creates a flow and primary applicant. A Flow must be created uniquely for combination of  `application_id` and `external_reference_id`.",
+        "operationId": "Flowinit",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Token",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Access token"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "product_type",
+                  "application_id",
+                  
+                  "user_docs",
+                  "username",
+                  "external_reference_id",
+
+                  "callback_url",
+                  "chat_notification_url",
+                  "auth_token_url"
+                ],
+                "properties": {
+                  "product_type": {
+                    "type": "string",
+                    "description": "Product Type",
+                     "enum": ["MSME_OD", "TW", "LAP", "CDL"]
+                  },
+                  "application_id": {
+                    "type": "string",
+                    "description": "Application ID"
+                  },
+                  "external_reference_id": {
+                    "type": "string",
+                    "description": "External Reference ID"
+                  },
+                  "external_document_id": {
+                    "type": "string",
+                    "description": "External Document ID",
+                    "example": "string"
+                  },
+                  "username": {
+                    "type": "string",
+                    "description": "Username"
+                  },
+                  "user_docs": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "List of document types"
+                },
+                  "callback_url": {
+                    "type": "string",
+                    "description": "Callback URL",
+                    "format": "uri"
+                  },
+                  "chat_notification_url": {
+                    "type": "string",
+                    "description": "Chat Notification URL",
+                    "format": "uri"
+                  },
+                  "auth_token_url": {
+                    "type": "string",
+                    "description": "Auth Token URL",
+                    "format": "uri"
+                  },
+                  "flow_params": {
+                    "type": "object",
+                    "description": "Flow Parameters"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "external_reference_id": {
+                      "type": "string",
+                      "example": "abc123xyz"
+                    },
+                    "flow_id": {
+                      "type": "string",
+                      "example": "KPOI987654321"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid token"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Missing external_reference_id parameter"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/verification/status": {
+      "get": {
+        "tags": ["v2"],
+        "description": "API to fetch verification status of all files submitted for a given flow.",
+        "operationId": "Status",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Token",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Access token"
+          },
+          {
+            "in": "query",
+            "name": "flow_id",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true,
+            "description": "UUID of the flow"
+          },
+          {
+            "in": "query",
+            "name": "external_reference_id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "External identifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status response for all files and the master status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "file_statuses": {
+                      "type": "array",
+                      "description": "List of individual file statuses",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "file_uuid": {
+                            "type": "string",
+                            "format": "uuid",
+                            "description": "UUID of the uploaded file",
+                            "example": "c6a2ffd7-eb44-4d16-8b45-32adc2182a8b"
+                          },
+                          "document_id": {
+                            "type": "string",
+                            "description": "Unique document ID",
+                            "example": "5643"
+                          },
+                          "status": {
+                            "type": "string",
+                            "description": "Status of the file",
+                            "example": "PROCESSING_SUCCESS",
+                            "enum": [
+                              "UPLOAD_INPROGRESS",
+                              "UPLOAD_SUCCESS",
+                              "UPLOAD_FAILED",
+                              "PROCESSING_INPROGRESS",
+                              "PROCESSING_SUCCESS",
+                              "PROCESSING_FAILED"
+                            ]
+                          }
+                        }
+                      },
+                      "example": [
+                        {
+                          "file_uuid": "c6a2ffd7-eb44-4d16-8b45-32adc2182a8b",
+                          "document_id": "5643",
+                          "status": "PROCESSING_SUCCESS"
+                        },
+                        {
+                          "file_uuid": "b5e3cc27-5a34-4f96-832c-8b9bcab1742f",
+                          "document_id": "7890",
+                          "status": "UPLOAD_SUCCESS"
+                        }
+                      ]
+                    },
+                    "master_status": {
+                      "type": "string",
+                      "description": "Overall master status based on file statuses",
+                      "enum": ["FAILED", "IN_PROGRESS", "SUCCESS"],
+                      "example": "SUCCESS"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Missing or invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Missing required ['flow_id'] parameters",
+                      "description": "The client did not provide a required query parameter."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid token",
+                      "description": "Authentication token is invalid or expired"
+                    },
+                    "reason": {
+                      "type": "string",
+                      "example": "Signature verification failed",
+                      "description": "Token signature verification error"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Applicant not found with provided external_reference_id and flow_id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Applicant not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "Applicant is deleted with provided external_reference_id and flow_id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Applicant has been deleted."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/verification/docs": {
+      "get": {
+        "tags": ["v2"],
+        "description": "Returns a map of documents types with boolean value indicating whether a document has been uploaded for the specified flow or not.",
+        "operationId": "Docs",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Token",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Access token"
+          },
+          {
+            "in": "query",
+            "name": "flow_id",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true,
+            "description": "UUID of the flow"
+          },
+          {
+            "in": "query",
+            "name": "external_reference_id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "External identifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Document presence status by document type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "BANK_STATEMENT": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "EBILL": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "FSSAI_CERTIFICATE": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "GST_CERT": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "PAN": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "PURCHASE_ORDER": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "SHOP_ACT_LICENSE": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "UDYAM_CERT": {
+                      "type": "boolean",
+                      "example": false
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Missing or invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Missing or empty required parameters: ['flow_id']"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid token",
+                      "description": "Authentication token is invalid or expired"
+                    },
+                    "reason": {
+                      "type": "string",
+                      "example": "Signature verification failed",
+                      "description": "Token signature verification error"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Applicant not found with provided external_reference_id and flow_id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Applicant not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "Applicant is deleted with provided external_reference_id and flow_id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Applicant is already deleted"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/verification/flow/submit": {
+      "post": {
+        "tags": ["v2"],
+        "description": "Submits verification flow data and optionally closes the flow.",
+        "operationId": "SubmitVerificationFlow",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Token",
+            "schema": {"type": "string"},
+            "required": true,
+            "description": "Access token"
+          },
+          {
+            "in": "query",
+            "name": "flow_id",
+            "schema": {"type": "string", "format": "uuid"},
+            "required": true,
+            "description": "Flow UUID to submit"
+          },
+          {
+            "in": "query",
+            "name": "close_flow",
+            "schema": {"type": "string", "enum": ["yes","no"]},
+            "required": false,
+            "description": "Whether to close the flow after submission"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "flow_id": {"type": "string", "format": "uuid", "description": "Flow UUID to submit"},
+                  "close_flow": {"type": "string", "enum": ["yes","no"], "description": "Flag to close the flow"}
+                },
+                "required": ["flow_id"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response with verification data (CallbackSuccess or CallbackFailure).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "flow_id": {"type": "string", "format": "uuid", "description": "Flow UUID"},
+                    "flow_params": {"type": "object", "description": "Additional parameters for the flow"},
+                    "data": {
+                      "type": "array",
+                      "description": "List of verification results",
+                      "items": {"oneOf": [{"$ref": "#/components/schemas/CallbackSuccess"},{"$ref": "#/components/schemas/CallbackFailure"}]}
+                    }
+                  },
+                  "example": {
+                    "flow_id": "4477b35e-07d0-4324-b301-b946a26dae67",
+                    "flow_params": {},
+                    "data": [
+                      {
+                        "data": {
+                          "dob": {"confidence_score": 0.95, "pixels": {"height": 0.0,"left": 0.0,"top": 0.0,"width": 0.0}, "value": "14/11/1998"},
+                          "document_type": "PAN",
+                          "is_original": {"confidence_score": 0.6, "pixels": {"height":0.0,"left":0.0,"top":0.0,"width":0.0},"value":"yes"},
+                          "name_as_per_pan": {"confidence_score": 0.9, "pixels": {"height":0.0,"left":0.0,"top":0.0,"width":0.0},"value":"PASHANGH RAYOMAND IRANI"},
+                          "pan_number": {"confidence_score": 0.95, "pixels": {"height":0.0,"left":0.0,"top":0.0,"width":0.0},"value":"AFQP19186N"}
+                        },
+                        "document_id": "123",
+                        "external_reference_id": "1q2w3e",
+                        "file_uuid": "db096806-41b1-4123-891d-b97d1d3cbdfe"
+                      },
+                      {
+                        "data": {"processing_error": "PROCESSING_FAILED"},
+                        "document_id": "124",
+                        "external_reference_id": "",
+                        "file_uuid": "17d3abc2-a669-463b-8cd4-2fc6f97b0691"
+                      },
+                      {
+                        "data": {"processing_error": "PROCESSING_FAILED"},
+                        "document_id": "125",
+                        "external_reference_id": "",
+                        "file_uuid": "259ef617-186e-49ff-95d4-651adc3691fc"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Missing or invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {"error": {"type": "string","example": "Missing or invalid flow_id"}}
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {"type": "string","example": "Invalid token"},
+                    "reason": {"type": "string","description": "Token signature verification error","example":"Signature verification failed"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }},
+    "/v2/verification/flow/coapplicant": {
+      "post": {
+        "tags": ["v2"],
+        "description": "Adds one or more co-applicants to the verification flow.",
+        "operationId": "AddCoapplicant",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Token",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Access token"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "flow_id": {
+                    "type": "string",
+                    "format": "uuid",
+                    "description": "Flow UUID"
+                  },
+                  "co_applicants": {
+                    "type": "array",
+                    "description": "List of co-applicants to be created",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "external_reference_id": {
+                          "type": "string",
+                          "description": "External identifier"
+                        },
+                        "username": {
+                          "type": "string",
+                          "description": "Username of the co-applicant"
+                        },
+                         "user_docs": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "List of document types"
+                        },
+                      },
+                      "required": ["external_reference_id", "username", "user_docs"]
+                    },
+                    "minItems": 1
+                  }
+                },
+                "required": ["flow_id", "co_applicants"]
+              }
+            }
+          }
+        },
+        "responses": {
+         "201": {
+  "description": "Co-applicants created successfully",
+  "content": {
+    "application/json": {
+      "schema": {
+        "type": "object",
+        "properties": {
+          "created": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "co_applicant_id": {
+                  "type": "string",
+                  "format": "uuid",
+                  "example": "4ac93d4e-13c2-4cad-975d-d70da5f38e7d"
+                },
+                "external_reference_id": {
+                  "type": "string",
+                  "example": "user-abcd-7654"
+                }
+              }
+            }
+          },
+          "failed": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "document matrix not found"
+                },
+                "external_reference_id": {
+                  "type": "string",
+                  "example": "user-abcd-1234"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+},
+          "400": {
+            "description": "Bad Request - Missing or invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "co_applicants list cannot be empty"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid token"
+                    },
+                    "reason": {
+                      "type": "string",
+                      "example": "Signature verification failed",
+                      "description": "Token signature verification error"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Resource Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Flow not found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["v2"],
+        "description": "Deletes a co-applicant from a flow.",
+        "operationId": "DeleteCoapplicant",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Token",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Access token"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "flow_id": {
+                    "type": "string",
+                    "format": "uuid",
+                    "description": "UUID of the flow"
+                  },
+                  "external_reference_id": {
+                    "type": "string",
+                    "description": "External identifier"
+                  },
+                   "co_applicant_id": {
+                    "type": "string",
+                    "format": "uuid",
+                    "description": "Applicant ID"
+                  },
+                },
+                "required": ["external_reference_id", "flow_id"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Co-applicant deleted successfully - No content returned"
+          },
+          "400": {
+            "description": "Bad Request - Missing or invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Missing or empty required parameters: ['flow_id']"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid token"
+                    },
+                    "reason": {
+                      "type": "string",
+                      "example": "Signature verification failed",
+                      "description": "Token signature verification error"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Applicant not found with provided external_reference_id and flow_id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Applicant not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "Applicant is deleted with provided external_reference_id and flow_id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Applicant is already deleted"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/verification/chat-history": {
+  "get": {
+    "tags": ["v2"],
+    "description": "Retrieves most recent chat messages for flow ID with paginated support. Query parameters `page` (default 1) and `per_page` (default 10) for pagination control.",
+    "operationId": "getChatHistory",
+    "parameters": [
+      {
+        "in": "query",
+        "name": "flow_id",
+        "schema": {
+          "type": "string"
+        },
+        "required": true,
+        "description": "Unique identifier for the chat flow"
+      },
+      {
+        "in": "query",
+        "name": "page",
+        "schema": {
+          "type": "integer",
+          "default": 1
+        },
+        "required": false,
+        "description": "Page number of the results to retrieve (for pagination)."
+      },
+      {
+        "in": "query",
+        "name": "per_page",
+        "schema": {
+          "type": "integer",
+          "default": 10
+        },
+        "required": false,
+        "description": "Number of messages to return"
+      },
+      {
+        "in": "header",
+        "name": "Token",
+        "schema": {
+          "type": "string"
+        },
+        "required": true,
+        "description": "JWT access token for authentication"
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Chat history retrieved successfully",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string",
+                        "example": "how are you?"
+                      },
+                      "sender": {
+                        "type": "string",
+                        "example": "user"
+                      },
+                      "external_document_id": {
+                        "type": "string",
+                        "example": "9a21f55e-3d7b-40b3-b8e0-bf31c73059e6"
+                      },
+                      "created_at": {
+                      "type": "string",
+                      "description": "Message timestamp",
+                      "example": "2025-10-11T06:01:03"
+                    }
+                    }
+                  }
+                },
+                "page": {
+                  "type": "integer",
+                  "description": "The current page number being returned",
+                  "example": 1},
+              "per_page": {
+                "type": "integer",
+                "description": "The number of messages included per page",
+                "example": 10},
+              "total_pages": {
+                "type": "integer",
+                "description": "The total number of pages available based on the per_page limit",
+                "example": 5},
+              "total_items": {
+                "type": "integer",
+                "description": "The total number of messages available for the query",
+                "example": 100},
+              "has_next": {
+                "type": "boolean",
+                "description": "Indicates whether there is a next page of results",
+                "example": true},
+              "has_prev": {
+                "type": "boolean",
+                "description": "Indicates whether there is a previous page of results",
+                "example": false}
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Missing or Invalid parameters",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "page must be integer"
+                }
+              }
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Unauthorized access due to invalid token",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Invalid or expired token"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }},
+    "/v2/verification/chat": {
+      "post": {
+        "tags": ["v2"],
+        "description": "Send a text message to the chat service and receive response.",
+        "operationId": "postChat",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Token",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Access token"
+          },
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "message",
+                  "flow_id"
+                ],
+                "properties": {
+                  "message": {
+                    "type": "string",
+                    "description": "The text message sent by the user",
+                  },
+                  "flow_id": {
+                    "type": "string",
+                    "description": "Flow ID",
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Response text from the chat service",
+                      "example": "I'm doing well, thank you for asking! How can I help you today?"
+                    },
+                     "message_id": {
+                      "type": "string",
+                      "description": "Message ID",
+                      "example": "45ba2f40-02ff-43d3-b3fc-de2300f25756"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "description": "Message timestamp",
+                      "example": "2025-10-11T06:01:03"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Error from LLM service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Error while processing user message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Missing message parameter"
+                    }
+                  }
+                }
+              }
+            }
+          },
+        }
+      }},
+          "/v2/verification/product-documents": 
+      {"get": {
+      "tags": ["v2"],
+      "description": "Fetches document types for a given product type. If no product_type is provided, returns the list of all available product types.",
+      "operationId": "GetProductDocuments",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Token",
+          "schema": {
+            "type": "string"
+          },
+          "required": true,
+          "description": "Access token"
+        },
+        {
+          "in": "query",
+          "name": "product_type",
+          "schema": {
+            "type": "string",
+            "enum": ["MSME_OD", "TW", "LAP", "CDL"]
+          },
+          "required": false,
+          "description": "Product Type identifier (optional). If omitted, all available product types are returned."
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Successful response with document types or list of product types",
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "product_types": {
+                        "type": "array",
+                        "description": "List of available product types",
+                        "items": {
+                          "type": "string"
+                        },
+                        "example": ["MSME_OD", "CDL", "TW", "LAP"]
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "document_types": {
+                        "type": "array",
+                        "description": "List of document types for the given product type",
+                        "items": {
+                          "type": "string"
+                        },
+                        "example": [
+                          "DRUG_LICENSE",
+                          "VOTER_ID",
+                          "RENT_AGREEMENT",
+                          "DRIVING_LICENSE",
+                          "BANK_STATEMENT",
+                          "EBILL",
+                          "PAN",
+                          "INDEX_2",
+                          "GST_CERT",
+                          "AADHAAR",
+                          "UDYAM_CERT",
+                          "SHOP_ACT_LICENSE",
+                          "PURCHASE_ORDER"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "401": {
+          "description": "Unauthorized - Invalid or missing token",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "error": {
+                    "type": "string",
+                    "example": "Invalid or missing authentication token"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }}
+
+  }
+}
