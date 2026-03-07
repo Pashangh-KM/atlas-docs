@@ -4045,10 +4045,10 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "flow_uuid": {
+                  "product_type": {
                     "type": "string",
                     "format": "uuid",
-                    "description": "Flow UUID associated with the verification request"
+                    "description": "Product type"
                   },
                   "file_urls": {
                     "type": "array",
@@ -4072,7 +4072,7 @@
                 },
                 "required": ["flow_uuid", "file_urls"],
                 "example": {
-                  "flow_uuid": "LOS-17cab13b-f437-49bc-9c08-55319b88b0eb",
+                  "product_type": "MSME_OD",
                   "file_urls": [
                     {
                       "file_url": "https://files.s3.ap-south-1.amazonaws.com/uploads/files/sample1.jpg?response-content-disposition=inlin",
