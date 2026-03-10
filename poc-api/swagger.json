@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "description": "**API Documentation**",
-    "title": "DocStream Service",
+    "title": "POC tesing APIs",
     "version": "1.0.0"
   },
   "tags": [
