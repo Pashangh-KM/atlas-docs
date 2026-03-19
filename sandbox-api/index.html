@@ -48,11 +48,17 @@ body {
   color: white;
 }
 
-/* Main */
+/* Main layout (FULL WIDTH FIX) */
 .main {
   margin-left: 260px;
   padding: 40px;
-  max-width: 900px;
+  width: calc(100% - 260px);
+}
+
+/* Premium content container */
+.content {
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 /* Sections */
@@ -93,8 +99,15 @@ body {
   display: none;
 }
 
-.swagger-ui {
-  margin-top: 20px;
+/* Swagger full width fix */
+#swagger-ui {
+  margin-top: 30px;
+  max-width: 100%;
+}
+
+.swagger-ui .wrapper {
+  max-width: 100%;
+  padding: 0;
 }
 
 /* Make endpoints cleaner */
@@ -120,43 +133,46 @@ body {
 
   <!-- Main Content -->
   <div class="main">
+    <div class="content">
 
-    <!-- Overview -->
-    <div class="section" id="overview">
-      <h1>Sandbox API Documentation</h1>
-      <p>
-        The Sandbox APIs enables businesses to validate our document extraction capabilities
-        in real time. It is designed for high accuracy and low latency.
-      </p>
-    </div>
-
-    <!-- Auth -->
-    <div class="section" id="auth">
-      <h2>Authentication</h2>
-      <p>
-        All API requests require an auth token passed in the header.
-      </p>
-
-      <div class="code">
-Authorization: Bearer &lt;AUTH_TOKEN&gt;
+      <!-- Overview -->
+      <div class="section" id="overview">
+        <h1>Sandbox API Documentation</h1>
+        <p>
+          The Sandbox APIs enables businesses to validate our document extraction capabilities
+          in real time. It is designed for high accuracy and low latency.
+        </p>
       </div>
-    </div>
 
-    <!-- Flow -->
-    <div class="section" id="flow">
-      <h2>How it works</h2>
-      <p>1. Authenticate via the auth APIs using the client ID and secret</p>
-      <p>2. Upload documents to our system which classifies and extracts information</p>
-      <p>3. Receive structured output with confidence score</p>
-    </div>
+      <!-- Auth -->
+      <div class="section" id="auth">
+        <h2>Authentication</h2>
+        <p>
+          All API requests require an auth token passed in the header.
+        </p>
 
-    <!-- Swagger -->
-    <div class="section" id="api">
-      <h2>API Structure</h2>
-      <div id="swagger-ui"></div>
-    </div>
+        <div class="code">
+Authorization: Bearer &lt;AUTH_TOKEN&gt;
+        </div>
+      </div>
 
+      <!-- Flow -->
+      <div class="section" id="flow">
+        <h2>How it works</h2>
+        <p>1. Authenticate via the auth APIs using the client ID and secret</p>
+        <p>2. Upload documents to our system which classifies and extracts information</p>
+        <p>3. Receive structured output with confidence score</p>
+      </div>
+
+      <!-- Swagger -->
+      <div class="section" id="api">
+        <h2>API Structure</h2>
+        <div id="swagger-ui"></div>
+      </div>
+
+    </div>
   </div>
+
 </div>
 
 <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"></script>
@@ -168,7 +184,7 @@ window.onload = function () {
     url: "./swagger.json",
     dom_id: "#swagger-ui",
     deepLinking: true,
-    supportedSubmitMethods: [] // disables "Try it out"
+    supportedSubmitMethods: []
   });
 
 };
