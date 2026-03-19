@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <title>Atlas API Documentation</title>
@@ -9,107 +8,155 @@
 
 <style>
 
-/* Page */
+/* Base */
 body {
   margin: 0;
-  background: #f8fafc;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-}
-
-/* Top Navbar */
-.navbar {
-  background: #0f172a;
-  color: white;
-  padding: 16px 32px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.nav-title {
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.nav-sub {
-  font-size: 13px;
-  opacity: 0.7;
-}
-
-/* Hero Section */
-.hero {
-  padding: 40px 32px 20px 32px;
-  max-width: 900px;
-}
-
-.hero h1 {
-  font-size: 32px;
-  margin-bottom: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+  background: #ffffff;
   color: #0f172a;
 }
 
-.hero p {
-  font-size: 16px;
+/* Layout */
+.wrapper {
+  display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  background: #0f172a;
+  color: white;
+  height: 100vh;
+  position: fixed;
+  padding: 24px;
+}
+
+.sidebar h2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.sidebar a {
+  display: block;
+  color: #cbd5f5;
+  text-decoration: none;
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.sidebar a:hover {
+  color: white;
+}
+
+/* Main */
+.main {
+  margin-left: 260px;
+  padding: 40px;
+  max-width: 900px;
+}
+
+/* Sections */
+.section {
+  margin-bottom: 40px;
+}
+
+.section h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.section h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.section p {
   color: #475569;
   line-height: 1.6;
 }
 
-/* Card container */
-.container {
-  background: white;
-  margin: 20px 32px 40px 32px;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+/* Code block */
+.code {
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  overflow-x: auto;
 }
 
-/* Hide unwanted Swagger elements */
-.swagger-ui .topbar {
+/* Swagger cleanup */
+.swagger-ui .topbar,
+.swagger-ui .scheme-container,
+.swagger-ui .info,
+.swagger-ui .servers {
   display: none;
 }
 
-.swagger-ui .info .link {
-  display: none;
-}
-
-.swagger-ui .scheme-container {
-  display: none;
-}
-
-/* Better spacing */
-.swagger-ui .wrapper {
-  padding: 0;
+.swagger-ui {
+  margin-top: 20px;
 }
 
 /* Make endpoints cleaner */
 .swagger-ui .opblock {
-  border-radius: 8px;
+  border-radius: 6px;
 }
 
 </style>
-
 </head>
 
 <body>
 
-<!-- Navbar -->
-<div class="navbar">
-  <div class="nav-title">Sandbox Atlas API</div>
-  <div class="nav-sub">Secure Business APIs</div>
-</div>
+<div class="wrapper">
 
-<!-- Hero Section -->
-<div class="hero">
-  <h1>Upload API</h1>
-  <p>
-    This API allows partners to securely upload and process documents within the Atlas platform.
-    It is designed for reliability, scalability, and seamless integration into business workflows.
-  </p>
-</div>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Atlas API</h2>
+    <a href="#overview">Overview</a>
+    <a href="#auth">Authentication</a>
+    <a href="#flow">Workflow</a>
+    <a href="#api">API Reference</a>
+  </div>
 
-<!-- Swagger Container -->
-<div class="container">
-  <div id="swagger-ui"></div>
+  <!-- Main Content -->
+  <div class="main">
+
+    <!-- Overview -->
+    <div class="section" id="overview">
+      <h1>Address Match API</h1>
+      <p>
+        The Sandbox APIs enables businesses to validate our document extraction capabilities
+        in real time. It is designed for high accuracy and low latency.
+      </p>
+    </div>
+
+    <!-- Auth -->
+    <div class="section" id="auth">
+      <h2>Authentication</h2>
+      <p>
+        All API requests require an API key passed in the header.
+      </p>
+
+      <div class="code">
+Authorization: Bearer &lt;YOUR_API_KEY&gt;
+      </div>
+    </div>
+
+    <!-- Flow -->
+    <div class="section" id="flow">
+      <h2>How it works</h2>
+      <p>1. Authenticate via the auth APIs using the client ID and secret</p>
+      <p>2. Upload documents to our system which classifies and extracts information</p>
+      <p>3. Receive structured output with confidence score</p>
+    </div>
+
+    <!-- Swagger -->
+    <div class="section" id="api">
+      <h2>API Reference</h2>
+      <div id="swagger-ui"></div>
+    </div>
+
+  </div>
 </div>
 
 <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"></script>
@@ -121,7 +168,7 @@ window.onload = function () {
     url: "./swagger.json",
     dom_id: "#swagger-ui",
     deepLinking: true,
-    supportedSubmitMethods: []  // disables "Try it out" (optional)
+    supportedSubmitMethods: [] // disables "Try it out"
   });
 
 };
@@ -129,4 +176,3 @@ window.onload = function () {
 
 </body>
 </html>
-```
