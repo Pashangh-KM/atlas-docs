@@ -48,7 +48,7 @@ body {
   color: white;
 }
 
-/* Main layout */
+/* Main */
 .main {
   margin-left: 260px;
   padding: 40px;
@@ -56,7 +56,7 @@ body {
   box-sizing: border-box;
 }
 
-/* Content container (for text only) */
+/* Content (text only) */
 .content {
   max-width: 1100px;
   margin: 0 auto;
@@ -100,46 +100,38 @@ body {
   display: none;
 }
 
-/* ===== CRITICAL FIX: FULL WIDTH SWAGGER ===== */
+/* ===== REAL FIX STARTS HERE ===== */
 
-/* Let swagger break out of centered container */
-.swagger-section {
+/* Full width root */
+#swagger-ui {
   width: 100%;
+  margin: 30px 0 0 0;
 }
 
-/* Override content constraint ONLY for swagger */
-.swagger-section #swagger-ui {
-  width: 100%;
-  max-width: 100%;
+/* Kill centering (THIS WAS THE ISSUE) */
+.swagger-ui {
+  width: 100% !important;
+  margin: 0 !important;
 }
 
-/* Kill ALL internal width limits */
-.swagger-ui,
-.swagger-ui .wrapper,
+/* Remove internal centering + width caps */
+.swagger-ui .wrapper {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;   /* 🔥 critical */
+  padding: 0 !important;
+}
+
+/* Expand everything */
 .swagger-ui .opblock-tag-section,
 .swagger-ui .opblock,
 .swagger-ui .opblock-body,
 .swagger-ui .scheme-container {
-  max-width: 100% !important;
   width: 100% !important;
+  max-width: 100% !important;
 }
 
-/* Remove padding causing right gap */
-.swagger-ui .wrapper {
-  padding: 0 !important;
-}
-
-/* Fix flex shrinking issue */
-.swagger-ui .opblock-body {
-  flex: 1 !important;
-}
-
-/* Clean spacing */
-#swagger-ui {
-  margin-top: 30px;
-}
-
-/* Make endpoints cleaner */
+/* Optional: cleaner look */
 .swagger-ui .opblock {
   border-radius: 6px;
 }
@@ -160,13 +152,12 @@ body {
     <a href="#api">API Structure</a>
   </div>
 
-  <!-- Main Content -->
+  <!-- Main -->
   <div class="main">
 
-    <!-- TEXT CONTENT (centered) -->
+    <!-- Text content -->
     <div class="content">
 
-      <!-- Overview -->
       <div class="section" id="overview">
         <h1>Sandbox API Documentation</h1>
         <p>
@@ -175,19 +166,15 @@ body {
         </p>
       </div>
 
-      <!-- Auth -->
       <div class="section" id="auth">
         <h2>Authentication</h2>
-        <p>
-          All API requests require an auth token passed in the header.
-        </p>
+        <p>All API requests require an auth token passed in the header.</p>
 
         <div class="code">
 Authorization: Bearer &lt;AUTH_TOKEN&gt;
         </div>
       </div>
 
-      <!-- Flow -->
       <div class="section" id="flow">
         <h2>How it works</h2>
         <p>1. Authenticate via the auth APIs using the client ID and secret</p>
@@ -197,8 +184,8 @@ Authorization: Bearer &lt;AUTH_TOKEN&gt;
 
     </div>
 
-    <!-- SWAGGER (FULL WIDTH, OUTSIDE CONTENT CONTAINER) -->
-    <div class="section swagger-section" id="api">
+    <!-- Swagger FULL WIDTH -->
+    <div class="section" id="api">
       <div class="content">
         <h2>API Structure</h2>
       </div>
@@ -214,14 +201,12 @@ Authorization: Bearer &lt;AUTH_TOKEN&gt;
 
 <script>
 window.onload = function () {
-
   SwaggerUIBundle({
     url: "./swagger.json",
     dom_id: "#swagger-ui",
     deepLinking: true,
     supportedSubmitMethods: []
   });
-
 };
 </script>
 
