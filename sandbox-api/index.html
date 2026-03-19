@@ -48,14 +48,15 @@ body {
   color: white;
 }
 
-/* Main layout (FULL WIDTH FIX) */
+/* Main layout */
 .main {
   margin-left: 260px;
   padding: 40px;
   width: calc(100% - 260px);
+  box-sizing: border-box;
 }
 
-/* Premium content container */
+/* Content container (for text only) */
 .content {
   max-width: 1100px;
   margin: 0 auto;
@@ -99,15 +100,43 @@ body {
   display: none;
 }
 
-/* Swagger full width fix */
-#swagger-ui {
-  margin-top: 30px;
+/* ===== CRITICAL FIX: FULL WIDTH SWAGGER ===== */
+
+/* Let swagger break out of centered container */
+.swagger-section {
+  width: 100%;
+}
+
+/* Override content constraint ONLY for swagger */
+.swagger-section #swagger-ui {
+  width: 100%;
   max-width: 100%;
 }
 
+/* Kill ALL internal width limits */
+.swagger-ui,
+.swagger-ui .wrapper,
+.swagger-ui .opblock-tag-section,
+.swagger-ui .opblock,
+.swagger-ui .opblock-body,
+.swagger-ui .scheme-container {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* Remove padding causing right gap */
 .swagger-ui .wrapper {
-  max-width: 100%;
-  padding: 0;
+  padding: 0 !important;
+}
+
+/* Fix flex shrinking issue */
+.swagger-ui .opblock-body {
+  flex: 1 !important;
+}
+
+/* Clean spacing */
+#swagger-ui {
+  margin-top: 30px;
 }
 
 /* Make endpoints cleaner */
@@ -115,32 +144,6 @@ body {
   border-radius: 6px;
 }
 
-.swagger-ui {
-  width: 100%;
-}
-/
-.swagger-ui .wrapper {
-  max-width: 100% !important;
-  width: 100% !important;
-  padding: 0 !important;
-}
-
-.swagger-ui .opblock-tag-section {
-  max-width: 100% !important;
-}
-
-.swagger-ui .opblock {
-  max-width: 100% !important;
-}
-
-.swagger-ui .scheme-container {
-  max-width: 100% !important;
-}
-
-.swagger-ui .opblock-body {
-  margin-right: 0 !important;
-}
-  
 </style>
 </head>
 
@@ -159,6 +162,8 @@ body {
 
   <!-- Main Content -->
   <div class="main">
+
+    <!-- TEXT CONTENT (centered) -->
     <div class="content">
 
       <!-- Overview -->
@@ -190,13 +195,17 @@ Authorization: Bearer &lt;AUTH_TOKEN&gt;
         <p>3. Receive structured output with confidence score</p>
       </div>
 
-      <!-- Swagger -->
-      <div class="section" id="api">
+    </div>
+
+    <!-- SWAGGER (FULL WIDTH, OUTSIDE CONTENT CONTAINER) -->
+    <div class="section swagger-section" id="api">
+      <div class="content">
         <h2>API Structure</h2>
-        <div id="swagger-ui"></div>
       </div>
 
+      <div id="swagger-ui"></div>
     </div>
+
   </div>
 
 </div>
