@@ -1,212 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Atlas API Documentation</title>
+  <title>Atlas API Docs</title>
 
-<link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist/swagger-ui.css"/>
+  <link rel="stylesheet"
+  href="https://unpkg.com/swagger-ui-dist/swagger-ui.css" />
 
-<style>
+  <style>
 
-/* Base */
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
-  background: #ffffff;
-  color: #0f172a;
-}
+  /* hide spec URL under title */
+  .swagger-ui .info .link {
+    display: none;
+  }
 
-/* Layout */
-.wrapper {
-  display: flex;
-}
+  </style>
 
-/* Sidebar */
-.sidebar {
-  width: 240px;
-  background: #0f172a;
-  color: white;
-  height: 100vh;
-  position: fixed;
-  padding: 24px;
-}
-
-.sidebar h2 {
-  font-size: 18px;
-  margin-bottom: 20px;
-}
-
-.sidebar a {
-  display: block;
-  color: #cbd5f5;
-  text-decoration: none;
-  margin: 10px 0;
-  font-size: 14px;
-}
-
-.sidebar a:hover {
-  color: white;
-}
-
-/* Main */
-.main {
-  margin-left: 260px;
-  padding: 40px;
-  width: calc(100% - 260px);
-  box-sizing: border-box;
-}
-
-/* Content (text only) */
-.content {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-/* Sections */
-.section {
-  margin-bottom: 40px;
-}
-
-.section h1 {
-  font-size: 28px;
-  margin-bottom: 10px;
-}
-
-.section h2 {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.section p {
-  color: #475569;
-  line-height: 1.6;
-}
-
-/* Code block */
-.code {
-  background: #0f172a;
-  color: #e2e8f0;
-  padding: 14px;
-  border-radius: 8px;
-  font-size: 13px;
-  overflow-x: auto;
-}
-
-/* Swagger cleanup */
-.swagger-ui .topbar,
-.swagger-ui .scheme-container,
-.swagger-ui .info,
-.swagger-ui .servers {
-  display: none;
-}
-
-/* ===== REAL FIX STARTS HERE ===== */
-
-/* Full width root */
-#swagger-ui {
-  width: 100%;
-  margin: 30px 0 0 0;
-}
-
-/* Kill centering (THIS WAS THE ISSUE) */
-.swagger-ui {
-  width: 100% !important;
-  margin: 0 !important;
-}
-
-/* Remove internal centering + width caps */
-.swagger-ui .wrapper {
-  width: 100% !important;
-  max-width: 100% !important;
-  margin: 0 !important;   /* 🔥 critical */
-  padding: 0 !important;
-}
-
-/* Expand everything */
-.swagger-ui .opblock-tag-section,
-.swagger-ui .opblock,
-.swagger-ui .opblock-body,
-.swagger-ui .scheme-container {
-  width: 100% !important;
-  max-width: 100% !important;
-}
-
-/* Optional: cleaner look */
-.swagger-ui .opblock {
-  border-radius: 6px;
-}
-
-</style>
 </head>
 
 <body>
 
-<div class="wrapper">
-
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <h2>Atlas API Documentation</h2>
-    <a href="#overview">Overview</a>
-    <a href="#auth">Authentication</a>
-    <a href="#flow">Workflow</a>
-    <a href="#api">API Structure</a>
-  </div>
-
-  <!-- Main -->
-  <div class="main">
-
-    <!-- Text content -->
-    <div class="content">
-
-      <div class="section" id="overview">
-        <h1>Sandbox API Documentation</h1>
-        <p>
-          The Sandbox APIs enables businesses to validate our document extraction capabilities
-          in real time. It is designed for high accuracy and low latency.
-        </p>
-      </div>
-
-      <div class="section" id="auth">
-        <h2>Authentication</h2>
-        <p>All API requests require an auth token passed in the header.</p>
-
-        <div class="code">
-Authorization: Bearer &lt;AUTH_TOKEN&gt;
-        </div>
-      </div>
-
-      <div class="section" id="flow">
-        <h2>How it works</h2>
-        <p>1. Authenticate via the auth APIs using the client ID and secret</p>
-        <p>2. Upload documents to our system which classifies and extracts information</p>
-        <p>3. Receive structured output with confidence score</p>
-      </div>
-
-    </div>
-
-    <!-- Swagger FULL WIDTH -->
-    <div class="section" id="api">
-      <div class="content">
-        <h2>API Structure</h2>
-      </div>
-
-      <div id="swagger-ui"></div>
-    </div>
-
-  </div>
-
-</div>
+<div id="swagger-ui"></div>
 
 <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"></script>
 
 <script>
 window.onload = function () {
+
   SwaggerUIBundle({
     url: "./swagger.json",
-    dom_id: "#swagger-ui",
-    deepLinking: true,
-    supportedSubmitMethods: []
+    dom_id: "#swagger-ui"
   });
+
 };
 </script>
 
