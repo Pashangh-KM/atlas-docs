@@ -1124,48 +1124,22 @@
           }
         },
         "responses": {
-          "201": {
-            "description": "List of file UUIDs generated for the uploaded URLs",
+           "201": {
+            "description": "Batch ID generated for the uploaded files",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "file_uuid": {
-                        "type": "string",
-                        "format": "uuid",
-                        "example": "03f0341d-c933-46fc-a30c-ffb3ea8afd1d"
-                      },
-                      "batch_id": {
-                        "type": "string",
-                        "example": "BATCH-55193-DRTYJ-20250811084615"
-                      },
-                      "document_id": {
-                        "type": "string",
-                        "example": "1234"
-                      }
-                    },
-                    "required": ["file_uuid", "batch_id", "document_id"]
-                  },
-                  "example": [
-                    {
-                      "batch_id": "BATCH-30732-SIYKJ-20251121113228",
-                      "document_id": "1",
-                      "file_uuid": "03f03421-c933-46fc-a30c-ffb3ea8afd1d"
-                    },
-                    {
-                      "batch_id": "BATCH-30732-SIYKJ-20251121113228",
-                      "document_id": "2",
-                      "file_uuid": "03f03422-c933-46fc-a30c-ffb3ea8afd1d"
-                    },
-                    {
-                      "batch_id": "BATCH-30732-SIYKJ-20251121113228",
-                      "document_id": "3",
-                      "file_uuid": "03f03423-c933-46fc-a30c-ffb3ea8afd1d"
+                  "type": "object",
+                  "properties": {
+                    "batch_id": {
+                      "type": "string",
+                      "example": "BATCH-55193-DRTYJ-20250811084615"
                     }
-                  ]
+                  },
+                  "required": ["batch_id"],
+                  "example": {
+                    "batch_id": "BATCH-30732-SIYKJ-20251121113228"
+                  }
                 }
               }
             }
@@ -1186,23 +1160,6 @@
               }
             }
           },
-          "422": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Lentra Auth API failed",
-                      "description": "External service failure"
-                    }
-                  }
-                }
-              }
-            }
-          }
         }
       }
     },
